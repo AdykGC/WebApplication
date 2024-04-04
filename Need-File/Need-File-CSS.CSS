@@ -39,3 +39,72 @@
     margin-top: 100px;
     background-color: black;
 }
+
+.container-login {
+    color: rgb(255, 255, 255);
+    max-width: 400px;
+    margin: 4rem auto; /* Центрирование контейнера по вертикали и горизонтали */
+    padding: 30px;
+    border-radius: 10px;
+    border: 0.3rem solid #959595; /* Установка цвета границы и её толщины */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Мягкая тень */
+    text-align: center; /* Выравнивание текста по центру */
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #ffffff; /* Белый цвет текста */
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #495057; /* Темно-серый цвет границы */
+    border-radius: 5px;
+    background-color: #495057; /* Темно-серый цвет фона */
+    color: #ffffff; /* Белый цвет текста */
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff; /* Цвет кнопки */
+    color: #ffffff; /* Белый цвет текста кнопки */
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Цвет кнопки при наведении */
+}
+
+.alert {
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #dc3545; /* Красный цвет фона сообщения об ошибке */
+    color: #ffffff; /* Белый цвет текста сообщения об ошибке */
+    border: 1px solid #dc3545; /* Красный цвет границы */
+}
+
+.LINK-REGISTER {
+    text-decoration: none;
+    color: #ffffff; /* Цвет ссылки */
+}
+
+.LINK-REGISTER:hover {
+    text-decoration: underline;
+}
+
+.SEPARATOR {
+    margin: 0.9375rem 0; /* Внешние отступы элемента */
+    border-bottom: 0.125rem solid #ffffff; /* Граница для элемента и цвет границы */
+}

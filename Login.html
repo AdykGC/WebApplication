@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Подключаем CSS файл Bootstrap и CSS -->
+    <link href= "node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"> 
+    <link href= "Need-File/Need-File-CSS.CSS" rel="stylesheet">
+    <!-- Подключаем Google Fonts и Icons-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <!-- Подключаем файлы JavaScript для некоторых компонентов и интерактивности -->
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Login-Page</title>
+</head>
+<body>
+
+    <div class="container-md d-flex bg-dark justify-content-center align-items-center flex-column container-login">
+        <h2 class="Google-Font-Oswald">Four-Zero-Four</h2>
+    
+        <!-- login.html -->
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">Username</label>
+                {{ form.username }}
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                {{ form.password }}
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+    
+        {% if form.errors %}
+            <div class="alert alert-danger">{{ form.errors }}</div>
+        {% endif %}
+    
+        <div class="SEPARATOR"></div>
+        <a class="LINK-REGISTER" href="Registration.html">Register</a>
+    </div>
+</body>
+</html>
