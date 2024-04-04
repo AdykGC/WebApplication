@@ -76,7 +76,7 @@
     padding: 10px;
     border: none;
     border-radius: 5px;
-    background-color: #007bff; /* Цвет кнопки */
+    background-color: #353d45; /* Цвет кнопки */
     color: #ffffff; /* Белый цвет текста кнопки */
     cursor: pointer;
     transition: background-color 0.3s;
@@ -105,6 +105,10 @@
 }
 
 .SEPARATOR {
-    margin: 0.9375rem 0; /* Внешние отступы элемента */
-    border-bottom: 0.125rem solid #ffffff; /* Граница для элемента и цвет границы */
+    margin-top: 1rem; /* Верхний отступ элемента */
+    margin-bottom: 1rem; /* Нижний отступ элемента */
+    height: 0; /* Установите высоту разделителя на 0, чтобы он был невидимым */
+    border-top: 0.25rem solid #959595; /* Граница для элемента и цвет границы */
+    width: 100%; /* Установите ширину разделителя на 100% */
+    box-sizing: border-box; /* Учитывайте границу в общей ширине элемента */
 }
