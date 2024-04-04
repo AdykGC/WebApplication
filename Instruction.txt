@@ -2,6 +2,8 @@
 cd OdynXBET-WebAPP
 git add .
 git commit -m "Ваше сообщение коммита здесь"
+git pull origin LEARN
+(i) (Esc) (:wq)
 git push origin LEARN
 
 
