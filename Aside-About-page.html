@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<HTML lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Подключаем CSS файл Bootstrap и CSS -->
+    <link href= "node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"> 
+    <link href= "Need-File/Need-File-CSS.CSS" rel="stylesheet">
+    <!-- Подключаем Google Fonts и Icons-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!-- Подключаем файлы JavaScript для некоторых компонентов и интерактивности -->
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <title>404/About</title>
+</head>
+<body>
+  <!-- Фиксированный навигация -->
+  <nav class="navbar navbar-dark bg-dark fixed-top">
+    <!-- Контейнер с полным охватом -->
+    <div class="container-fluid">
+        <!-- Ссылочное лого -->
+        <a class="navbar-brand N-1" href="Aside-About-page.html">
+            <img src="Need-File/404.png" alt="Logo" width="60" height="35" class="d-inline-block align-text-top">
+            <p class="P-Size-1 Google-Font-Oswald">Four-Zero-Four</p>
+        </a>
+        <!-- Ссылочное кнопка -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Ссылочное меню ссылочной кнопки-->
+        <div class="offcanvas offcanvas-end text-bg-dark" data-bs-scroll="true" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+            <!-- Head меню -->
+            <div class="offcanvas-header">
+                <p class="offcanvas-title P-Size-1 Google-Font-Oswald" id="offcanvasDarkNavbarLabel">Four-Zero-Four</p>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <!-- Body меню -->
+            <div class="offcanvas-body">
+              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                <!-- Body link-1 -->
+                <li class="nav-item">
+                  <a class="nav-link N-1" href="Aside-Home-page.html">
+                    <span class="material-symbols-outlined">home</span>
+                    <p class="P-Size-2">Home</p>
+                  </a>
+                </li>
+                <!-- Body link-2 -->
+                <li class="nav-item">
+                  <a class="nav-link N-1" href="Aside-Dashboard-page.html">
+                    <span class="material-symbols-outlined">space_dashboard</span>
+                    <p class="P-Size-2">Dashboard</p>
+                  </a>
+                </li>
+                <!-- Body link-3 -->
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle N-1" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <p class="P-Size-3">Dropdown</p>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-dark">
+                    <li><a class="dropdown-item" href="#">Project-1</a></li>
+                    <li><a class="dropdown-item" href="#">Project-2</a></li>
+                    <li><a class="dropdown-item" href="#">Project-3</a></li>
+                    <li><a class="dropdown-item" href="#">Project-4</a></li>
+                    <li><a class="dropdown-item" href="#">Project-5</a></li>
+                    <li><a class="dropdown-item" href="#">Project-6</a></li>
+                    <li><a class="dropdown-item" href="#">Project-7</a></li>
+                    <li><a class="dropdown-item" href="#">Project-8</a></li>
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
+                  <li><a class="dropdown-item" href="Aside-Settings-page.html">Settings</a></li>
+                </ul>
+              </li>
+            </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="container-fluid Under-Nav-Line-1">
+    <img src="Need-File/404-2.jpg" alt="Logo" width="1024" height="1024" class="d-inline-block align-text-top">
+  </div>
+  </body>
+</HTML>
