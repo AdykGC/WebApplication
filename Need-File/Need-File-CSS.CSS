@@ -1,7 +1,14 @@
+/* ======== \/\/\/ ======== \/\/\/ ======== GOOGLE FONTS ======== \/\/\/ ======== \/\/\/ ======== */
 .Google-Font-Oswald{
     font-family: "Oswald", sans-serif;
     font-optical-sizing: auto;
     font-weight: 700;
+    font-style: normal;
+}
+.Google-Font-Libre-Baskerville{
+    font-family: "Libre Baskerville", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
     font-style: normal;
 }
 .material-symbols-outlined {
@@ -10,7 +17,67 @@
     'wght' 400,
     'GRAD' 0,
     'opsz' 24
-  }
+}
+/* ======== /\/\/\ ======== /\/\/\ ======== GOOGLE FONTS ======== /\/\/\ ======== /\/\/\ ======== */
+
+
+
+/* ======== \/\/\/ ======== \/\/\/ ======== Login Page ======== \/\/\/ ======== \/\/\/ ======== */
+.Container{
+    color: #ffffff;
+    max-width: 400px;
+    margin: 4rem auto; /* Центрирование контейнера по вертикали и горизонтали */
+    padding: 30px;
+    border-radius: 10px;
+    border: 0.3rem solid #959595; /* Установка цвета границы и её толщины */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Мягкая тень */
+    text-align: center; /* Выравнивание текста по центру */
+}
+.Container-Separate {
+    margin: 1rem 0 1rem 0;
+    height: 0; /* Установите высоту разделителя на 0, чтобы он был невидимым */
+    border-top: 0.25rem solid #959595; /* Граница для элемента и цвет границы */
+    width: 100%; /* Установите ширину разделителя на 100% */
+    box-sizing: border-box; /* Учитывайте границу в общей ширине элемента */
+}
+.Container-Link-Register {
+    text-decoration: none;
+    color: #ffffff; /* Цвет ссылки */
+}
+.Container-Link-Register:hover {
+    text-decoration: underline;
+}
+
+.Container-Form-Group-Input{
+    padding: 0.5rem;                                                   /*                     Внутренние отступы элемента                                                                  */
+    box-sizing: border-box;                                            /*                     Контейнер с гибким распределением элементов                                                  */
+    border: 0.17rem solid var(--SC-RED);                               /*                     Граница для элемента и цвет границы                                                          */
+    border-radius: 0.625rem;                                           /*                     Закругление углов (общее)                                                                    */
+    -webkit-border-radius: 0.625rem;                                   /*                     Закругление углов (Google Chrome)                                                            */
+    -moz-border-radius: 0.625rem;                                      /*                     Закругление углов (FireFox)                                                                  */
+    -khtml-border-radius: 0.625rem;                                    /*                     Закругление углов (Safari)                                                                   */
+    box-shadow: 0 0 0.5rem var(--SC-RED);                              /*                     Теневой цвет элемента                                                                        */
+    background: var(--SC-DARK);                                        /*                     Желательно прописывать, так как в Chrome при сохранных данных оно может быть желтым          */
+    background-color: var(--SC-DARK-BROWN-WL-INTENSITY);               /*                     Цвет заднего фона                                                                            */
+    outline: none;                                                     /*                     Удаляет обводку в браузерах хром(желтая) и сафари(синяя)                                     */
+    height: 2.5rem;                                                    /*                     Высота на свое усмотрение                                                                    */
+    width: 100%;                                                       /*                     Ширина на свое усмотрение                                                                    */
+    color: var(--SC-RED);                                              /*                     Цвет шрифта в обычном состоянии                                                              */
+    font-size: 1rem;                                                   /*                     Размер шрифта                                                                                */
+}
+.Container-Form-Group-Input:hover{
+    color: var(--SC-WHITE);                                            /*                     Цвет шрифта в обычном состоянии                                                              */
+    border: 0.17rem solid var(--SC-WHITE);                             /*                     Граница для элемента и цвет границы                                                          */
+}
+.Container-Form-Group-Input:focus{
+    color: var(--SC-WHITE);                                            /*                     Цвет шрифта в обычном состоянии                                                              */
+    border: 0.17rem solid var(--SC-WHITE);                             /*                     Граница для элемента и цвет границы                                                          */
+}
+.Container-Form-Group-Input::PLACEHOLDER{
+    color: var(--SC-RED);                                              /*                     Цвет шрифта в обычном состоянии                                                              */
+    opacity: 0.5;                                                      /*                     Прозрачность                                                                                 */
+}
+/* ======== /\/\/\ ======== /\/\/\ ======== Login Page ======== /\/\/\ ======== /\/\/\ ======== */
 .P-Size-1{
     font-size: 1.7rem;
     margin-bottom: 0rem;
@@ -40,17 +107,6 @@
     background-color: black;
 }
 
-.container-login {
-    color: rgb(255, 255, 255);
-    max-width: 400px;
-    margin: 4rem auto; /* Центрирование контейнера по вертикали и горизонтали */
-    padding: 30px;
-    border-radius: 10px;
-    border: 0.3rem solid #959595; /* Установка цвета границы и её толщины */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Мягкая тень */
-    text-align: center; /* Выравнивание текста по центру */
-}
-
 .form-group {
     margin-bottom: 20px;
 }
@@ -71,7 +127,7 @@
     color: #ffffff; /* Белый цвет текста */
 }
 
-.btn-primary {
+.Button-1 {
     width: 100%;
     padding: 10px;
     border: none;
@@ -82,7 +138,7 @@
     transition: background-color 0.3s;
 }
 
-.btn-primary:hover {
+.Button-1:hover {
     background-color: #0056b3; /* Цвет кнопки при наведении */
 }
 
@@ -95,20 +151,8 @@
     border: 1px solid #dc3545; /* Красный цвет границы */
 }
 
-.LINK-REGISTER {
-    text-decoration: none;
-    color: #ffffff; /* Цвет ссылки */
-}
 
-.LINK-REGISTER:hover {
-    text-decoration: underline;
-}
-
-.SEPARATOR {
-    margin-top: 1rem; /* Верхний отступ элемента */
-    margin-bottom: 1rem; /* Нижний отступ элемента */
-    height: 0; /* Установите высоту разделителя на 0, чтобы он был невидимым */
-    border-top: 0.25rem solid #959595; /* Граница для элемента и цвет границы */
-    width: 100%; /* Установите ширину разделителя на 100% */
-    box-sizing: border-box; /* Учитывайте границу в общей ширине элемента */
+.small-alert {
+    padding: 0.3rem; /* Adjust the padding as needed */
+    font-size: 0.7em; /* Adjust the font size as needed */
 }

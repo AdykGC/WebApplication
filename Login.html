@@ -11,36 +11,43 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap" rel="stylesheet">
     <!-- Подключаем файлы JavaScript для некоторых компонентов и интерактивности -->
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <title>Login-Page</title>
 </head>
-<body>
 
-    <div class="container-md d-flex bg-dark justify-content-center align-items-center flex-column container-login">
+
+<body>
+    <div class="container-md d-flex bg-dark justify-content-center align-items-center flex-column Container">
         <h2 class="Google-Font-Oswald">Four-Zero-Four</h2>
-    
+        <h6 class="Google-Font-Libre-Baskerville">Login form</h6>
+        <!-- Разделитель -->
+        <div class="Container-Separate"></div> 
         <!-- login.html -->
         <form method="post">
             {% csrf_token %}
             <div class="form-group">
-                <label for="username">Username</label>
-                {{ form.username }}
+                <label class="Google-Font-Libre-Baskerville" for="username">Username</label>
+                <div class="Container-Form-Group-Input">{{ form.username }}</div>
             </div>
             <div class="form-group">
-                <label for="password">Password</label>
-                {{ form.password }}
+                <label class="Google-Font-Libre-Baskerville" for="password">Password</label>
+                <div class="Container-Form-Group-Input">{{ form.password }}</div>
             </div>
-            <button type="submit" class="btn btn-primary">Login</button>
+            {% if form.non_field_errors %}
+            <div class="alert alert-danger small-alert">
+                <svg class="bi flex-shrink-0 me-2" width="20" height="20" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                {% for error in form.non_field_errors %}
+                {{ error }}
+                {% endfor %}
+            </div>
+            {% endif %}
+            <button type="submit" class="btn Button-1">Login</button>
         </form>
-    
-        {% if form.errors %}
-            <div class="alert alert-danger">{{ form.errors }}</div>
-        {% endif %}
-    
-        <div class="SEPARATOR"></div> <!-- Разделитель -->
-        
-        <a class="LINK-REGISTER" href="Registration.html">Register</a>
+        <!-- Разделитель -->
+        <div class="Container-Separate"></div>
+        <a class="Container-Link-Register" href="Registration.html">Register</a>
     </div>
     
 </body>
