@@ -1,0 +1,164 @@
+{% load static %}
+<!DOCTYPE HTML>
+<HTML lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Подключаем CSS файл Bootstrap -->
+    <link href="{% static 'node_modules/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet"> 
+    <!-- Подключаем файлы JavaScript для некоторых компонентов и интерактивности -->
+    <script src="{% static 'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <title>GIT GUD</title>
+</head>
+<body>
+    <!-- Фиксированный навигационный бар -->
+    <nav class="navbar navbar-dark bg-dark fixed-top">      
+        <!-- Контейнер с полным охватом -->
+        <div class="container-fluid">
+            <!-- Ссылочное лого -->
+            <a class="navbar-brand" href="#">
+                <img src="{% static 'IMG/error.jpg' %}" alt="Logo" width="40" height="30" class="d-inline-block align-text-top">
+                CORP
+            </a>
+            <!-- Кнопка для открытия модального окна -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Ссылочное меню ссылочной кнопки-->
+    <div class="offcanvas offcanvas-start text-bg-dark" data-bs-scroll="true" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+        <!-- Head меню -->
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">TEXT-O-MATIC</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <!-- Body меню -->
+        <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                <!-- Project 1 -->
+                <li class="nav-item mb-3" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='transparent'">
+                    <div class="d-flex justify-content-between align-items-center project-wrapper" style="padding: 10px;">
+                        <div class="project-name" style="margin-right: 10px;">Project 1</div>
+                    </div>
+                </li>
+        
+                <!-- Project 2 -->
+                <li class="nav-item mb-3" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='transparent'">
+                    <div class="d-flex justify-content-between align-items-center project-wrapper" style="padding: 10px;">
+                        <div class="project-name" style="margin-right: 10px;">Project 2</div>
+                    </div>
+                </li>
+
+                <li class="nav-item mb-3" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='transparent'">
+                    <div class="d-flex justify-content-between align-items-center project-wrapper" style="padding: 10px;">
+                        <div class="project-name" style="margin-right: 10px;">Project 3</div>
+                    </div>
+                </li>
+
+                <li class="nav-item mb-3" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='transparent'">
+                    <div class="d-flex justify-content-between align-items-center project-wrapper" style="padding: 10px;">
+                        <div class="project-name" style="margin-right: 10px;">Project 4</div>
+                    </div>
+                </li>
+
+                <li class="nav-item mb-3" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='transparent'">
+                    <div class="d-flex justify-content-between align-items-center project-wrapper" style="padding: 10px;">
+                        <div class="project-name" style="margin-right: 10px;">Project 5</div>
+                    </div>
+                </li>
+
+                <li class="nav-item mb-3" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='transparent'">
+                    <div class="d-flex justify-content-between align-items-center project-wrapper" style="padding: 10px;">
+                        <div class="project-name" style="margin-right: 10px;">Project 6</div>
+                    </div>
+                </li>
+
+                <li class="nav-item mb-3" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='transparent'">
+                    <div class="d-flex justify-content-between align-items-center project-wrapper" style="padding: 10px;">
+                        <div class="project-name" style="margin-right: 10px;">Project 7</div>
+                    </div>
+                </li>
+
+                <li class="nav-item mb-3" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='transparent'">
+                    <div class="d-flex justify-content-between align-items-center project-wrapper" style="padding: 10px;">
+                        <div class="project-name" style="margin-right: 10px;">Project 8</div>
+                    </div>
+                </li>
+
+                <li class="nav-item mb-3" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='transparent'">
+                    <div class="d-flex justify-content-between align-items-center project-wrapper" style="padding: 10px;">
+                        <div class="project-name" style="margin-right: 10px;">Project 9</div>
+                    </div>
+                </li>
+
+                <li class="nav-item mb-3" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='transparent'">
+                    <div class="d-flex justify-content-between align-items-center project-wrapper" style="padding: 10px;">
+                        <div class="project-name" style="margin-right: 10px;">Project 10</div>
+                    </div>
+                </li>
+
+                <li class="nav-item mb-3" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='transparent'">
+                    <div class="d-flex justify-content-between align-items-center project-wrapper" style="padding: 10px;">
+                        <div class="project-name" style="margin-right: 10px;">Project 11</div>
+                    </div>
+                </li>
+
+                <li class="nav-item mb-3" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='transparent'">
+                    <div class="d-flex justify-content-between align-items-center project-wrapper" style="padding: 10px;">
+                        <div class="project-name" style="margin-right: 10px;">Project 12</div>
+                    </div>
+                </li>
+
+                <li class="nav-item mb-3" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='transparent'">
+                    <div class="d-flex justify-content-between align-items-center project-wrapper" style="padding: 10px;">
+                        <div class="project-name" style="margin-right: 10px;">Project 13</div>
+                    </div>
+                </li>
+
+                <li class="nav-item mb-3" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='transparent'">
+                    <div class="d-flex justify-content-between align-items-center project-wrapper" style="padding: 10px;">
+                        <div class="project-name" style="margin-right: 10px;">Project 14</div>
+                    </div>
+                </li>
+
+                <li class="nav-item mb-3" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='transparent'">
+                    <div class="d-flex justify-content-between align-items-center project-wrapper" style="padding: 10px;">
+                        <div class="project-name" style="margin-right: 10px;">Project 15</div>
+                    </div>
+                </li>
+
+                <li class="nav-item mb-3" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='transparent'">
+                    <div class="d-flex justify-content-between align-items-center project-wrapper" style="padding: 10px;">
+                        <div class="project-name" style="margin-right: 10px;">Project 16</div>
+                    </div>
+                </li>
+            </ul>
+
+            </div>
+         
+         
+         
+            <!-- Bottom Box -->
+         <div class="offcanvas-bottom-box" style="padding: 10px; background-color: #212529; color: white;">
+            <div class="d-flex align-items-center">
+                <!-- User Icon -->
+                <div class="user-icon" style="margin-right: 10px;">
+                    <img src="{% static 'IMG/error.jpg' %}" alt="User Icon" width="50" height="50" style="border-radius: 50%;">
+                </div>
+                <!-- User Name and Role -->
+                <div class="user-info">
+                    <div class="user-name"> John Doe</div>
+                    <div class="user-role">Chief Editor</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+       

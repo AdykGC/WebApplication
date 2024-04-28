@@ -1,0 +1,109 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href= "{% static 'node_modules/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">  
+    <link href= "{% static 'IMG/Need-File-CSS.CSS' %}" rel="stylesheet">
+    <!-- Подключаем Google Fonts и Icons-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <!-- Подключаем файлы JavaScript для некоторых компонентов и интерактивности -->
+    <script src="{% static 'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <!--WEB TITLE-->
+    <title>Registration-Page</title>
+
+</head>
+<body>
+
+    <div class="container-md d-flex bg-dark justify-content-center align-items-center flex-column container-login">
+        <h2 class="Google-Font-Oswald">Four-Zero-Four</h2>
+
+        <!-- register.html -->
+<form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="username">Username</label>
+        {{ form.username }}
+        <br>
+    </div>
+    {% for error in form.username.errors %}
+        <div class="text-danger">{{ error }}</div>
+    {% endfor %}
+    
+    <div class="form-group">
+        <label for="password1">Password</label>
+        {{ form.password1 }}
+    </div>
+    
+    {% for error in form.password1.errors %}
+        <div class="text-danger">{{ error }}</div>
+    {% endfor %}
+
+    <div class="form-group">
+        <label for="password2">Confirm Password</label>
+        {{ form.password2 }}
+    </div>
+
+    {% for error in form.password2.errors %}
+        <div class="text-danger">{{ error }}</div>
+    {% endfor %}
+    
+    <div class="form-group">
+        <label for="user_type">User Type</label>
+        {{ form.user_type }}
+    </div>
+
+
+    
+
+
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>
+
+
+    <div class="SEPARATOR"></div> <!-- Разделитель -->
+        
+        <a class="LINK-REGISTER" href="{% url 'login' %}">Login</a>
+    </div>
+
+</body>
+
+<script>
+    window.onload = function() {
+        if(typeof window.history.pushState == 'function') {
+            window.history.pushState({}, "Hide", '{{request.path}}');
+        }
+        window.onpopstate = function(){
+            window.location.reload();
+        }
+    }
+</script>
+
+<script>
+    // Wait for the document to load
+    document.addEventListener('DOMContentLoaded', function () {
+        // Get the password input and confirm password input elements
+        var passwordInput = document.getElementById('id_password1');
+        var confirmPasswordInput = document.getElementById('id_password2');
+        var confirmPasswordError = document.getElementById('confirmPasswordError');
+
+        // Add an event listener to the confirm password input
+        confirmPasswordInput.addEventListener('input', function () {
+            // Check if the passwords match
+            if (passwordInput.value !== confirmPasswordInput.value) {
+                // Display the error message
+                confirmPasswordError.textContent = 'Passwords do not match.';
+                confirmPasswordError.style.color = 'red';  // Optional: Change the error message color
+            } else {
+                // Clear the error message if passwords match
+                confirmPasswordError.textContent = '';
+            }
+        });
+    });
+</script>
+</html>

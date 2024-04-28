@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="{% static 'node_modules/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'IMG/Need-File-CSS.CSS' %}" rel="stylesheet">
+    <!-- Подключаем Google Fonts и Icons-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <!-- Подключаем файлы JavaScript для некоторых компонентов и интерактивности -->
+    <script src="{% static 'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <!--WEB TITLE-->
+    <title>Successful registration</title>
+
+    <script>
+        function redirectToLogin() {
+            window.location.href = "{% url 'login' %}";
+        }
+    </script>
+</head>
+
+<body>
+
+    <div class="container-md d-flex bg-success justify-content-center align-items-center flex-column container-login">
+        <h2 class="Google-Font-Oswald form-group-2">Four-Zero-Four</h2>
+        <h4 class="">Successful Registration</h4>
+        <button type="button" class="btn btn-primary" onclick="redirectToLogin()">Login</button>
+    </div>
+
+</body>
+
+</html>

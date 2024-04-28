@@ -1,0 +1,29 @@
+{% extends 'project_manager_home.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Project Detail - {{ project.project_name }}</h1>
+    <hr>
+    <h2>Activities</h2>
+    <ul>
+        {% for activity in activities %}
+        <li>{{ activity.name }} - {{ activity.description }}</li>
+        {% endfor %}
+    </ul>
+
+    <hr>
+    <h2>Create New Activity</h2>
+    <form method="post" action="{% url 'project_manager_detail' project_id=project.id %}">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="activityName" class="form-label">Activity Name</label>
+            <input type="text" class="form-control" id="activityName" name="name">
+        </div>
+        <div class="mb-3">
+            <label for="activityDescription" class="form-label">Activity Description</label>
+            <textarea class="form-control" id="activityDescription" name="description"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Create Activity</button>
+    </form>
+</div>
+{% endblock %}
