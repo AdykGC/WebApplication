@@ -1,5 +1,6 @@
 from django.urls import path
 from app import views
+from . import views
 
 urlpatterns = [
     path("", views.handleregistration, name='registration'),
@@ -19,4 +20,6 @@ urlpatterns = [
 
     path('translator/<int:project_id>/', views.project_detail, name='project_detail'),
     path('chief-editor/<int:project_id>/', views.project_detail_2, name='project_detail_2'),
+
+    path('update_activity/<int:activity_id>/', views.update_activity, name='update_activity'),
 ]

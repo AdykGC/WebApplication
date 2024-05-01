@@ -8,7 +8,7 @@ from django.db import connection
 from django.http import JsonResponse
 from django.http import HttpResponse
 from django.template import loader
-
+from django.urls import reverse
 
 def index(request):
     return render(request, 'index.html')
@@ -102,7 +102,24 @@ def chief_editor_detail(request):
     return render(request, 'project_detail_2.html', context)
 
 
+def update_activity(request, activity_id):
+    # Получаем объект из базы данных по его идентификатору
+    activity = Activity.objects.get(id=activity_id)
+    project = activity.project
 
+    # Проверяем, был ли отправлен POST-запрос с обновленными данными
+    if request.method == 'POST':
+        # Получаем новый статус из POST-запроса
+        new_status = request.POST.get('status')
+        # Обновляем поле статуса объекта
+        activity.status = new_status
+        # Сохраняем изменения в базе данных
+        activity.save()
+        # Перенаправляем пользователя обратно на страницу деталей проекта
+        return redirect(reverse('project_detail', kwargs={'project_id': project.id}))
+    
+    # Если запрос не метода POST, возвращаем HttpResponse с информацией о том, что метод не поддерживается
+    return HttpResponse("Метод не поддерживается")
 
 # def edit_activity(request):
     # if request.method == "POST":
