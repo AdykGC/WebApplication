@@ -10,8 +10,24 @@
     <script src="{% static 'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
-    <title>GIT GUD</title>
+    <title>Chief Editor</title>
 </head>
+<style>
+    .btn {
+        border: none;
+        padding: 0;
+        margin: 0;
+    }
+    .card {
+        margin: 0; /* убираем внешний отступ */
+    }
+    .card-header {
+        text-align: left; /* Выравниваем текст в заголовке влево */
+    }
+    .card-footer {
+        background-color: #007bff64; /* Замените на нужный цвет */
+    }
+</style>
 <body>
     <!-- Фиксированный навигационный бар -->
     <nav class="navbar navbar-dark bg-dark fixed-top">      
@@ -40,109 +56,18 @@
         <div class="offcanvas-body">
             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                 <!-- Project 1 -->
+                {% for project in chief_editor_projects %}
                 <li class="nav-item mb-3" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='transparent'">
-                    <div class="d-flex justify-content-between align-items-center project-wrapper" style="padding: 10px;">
-                        <div class="project-name" style="margin-right: 10px;">Project 1</div>
-                    </div>
+                    <a href="{% url 'project_detail_2' project.id %}" style="text-decoration: none; color: inherit;">
+                        <div class="d-flex justify-content-between align-items-center project-wrapper" style="padding: 10px;">
+                            <div class="project-name" style="margin-right: 10px;">{{project.project_name}}</div>
+                        </div>
+                    </a>
                 </li>
-        
-                <!-- Project 2 -->
-                <li class="nav-item mb-3" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='transparent'">
-                    <div class="d-flex justify-content-between align-items-center project-wrapper" style="padding: 10px;">
-                        <div class="project-name" style="margin-right: 10px;">Project 2</div>
-                    </div>
-                </li>
-
-                <li class="nav-item mb-3" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='transparent'">
-                    <div class="d-flex justify-content-between align-items-center project-wrapper" style="padding: 10px;">
-                        <div class="project-name" style="margin-right: 10px;">Project 3</div>
-                    </div>
-                </li>
-
-                <li class="nav-item mb-3" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='transparent'">
-                    <div class="d-flex justify-content-between align-items-center project-wrapper" style="padding: 10px;">
-                        <div class="project-name" style="margin-right: 10px;">Project 4</div>
-                    </div>
-                </li>
-
-                <li class="nav-item mb-3" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='transparent'">
-                    <div class="d-flex justify-content-between align-items-center project-wrapper" style="padding: 10px;">
-                        <div class="project-name" style="margin-right: 10px;">Project 5</div>
-                    </div>
-                </li>
-
-                <li class="nav-item mb-3" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='transparent'">
-                    <div class="d-flex justify-content-between align-items-center project-wrapper" style="padding: 10px;">
-                        <div class="project-name" style="margin-right: 10px;">Project 6</div>
-                    </div>
-                </li>
-
-                <li class="nav-item mb-3" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='transparent'">
-                    <div class="d-flex justify-content-between align-items-center project-wrapper" style="padding: 10px;">
-                        <div class="project-name" style="margin-right: 10px;">Project 7</div>
-                    </div>
-                </li>
-
-                <li class="nav-item mb-3" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='transparent'">
-                    <div class="d-flex justify-content-between align-items-center project-wrapper" style="padding: 10px;">
-                        <div class="project-name" style="margin-right: 10px;">Project 8</div>
-                    </div>
-                </li>
-
-                <li class="nav-item mb-3" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='transparent'">
-                    <div class="d-flex justify-content-between align-items-center project-wrapper" style="padding: 10px;">
-                        <div class="project-name" style="margin-right: 10px;">Project 9</div>
-                    </div>
-                </li>
-
-                <li class="nav-item mb-3" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='transparent'">
-                    <div class="d-flex justify-content-between align-items-center project-wrapper" style="padding: 10px;">
-                        <div class="project-name" style="margin-right: 10px;">Project 10</div>
-                    </div>
-                </li>
-
-                <li class="nav-item mb-3" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='transparent'">
-                    <div class="d-flex justify-content-between align-items-center project-wrapper" style="padding: 10px;">
-                        <div class="project-name" style="margin-right: 10px;">Project 11</div>
-                    </div>
-                </li>
-
-                <li class="nav-item mb-3" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='transparent'">
-                    <div class="d-flex justify-content-between align-items-center project-wrapper" style="padding: 10px;">
-                        <div class="project-name" style="margin-right: 10px;">Project 12</div>
-                    </div>
-                </li>
-
-                <li class="nav-item mb-3" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='transparent'">
-                    <div class="d-flex justify-content-between align-items-center project-wrapper" style="padding: 10px;">
-                        <div class="project-name" style="margin-right: 10px;">Project 13</div>
-                    </div>
-                </li>
-
-                <li class="nav-item mb-3" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='transparent'">
-                    <div class="d-flex justify-content-between align-items-center project-wrapper" style="padding: 10px;">
-                        <div class="project-name" style="margin-right: 10px;">Project 14</div>
-                    </div>
-                </li>
-
-                <li class="nav-item mb-3" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='transparent'">
-                    <div class="d-flex justify-content-between align-items-center project-wrapper" style="padding: 10px;">
-                        <div class="project-name" style="margin-right: 10px;">Project 15</div>
-                    </div>
-                </li>
-
-                <li class="nav-item mb-3" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='transparent'">
-                    <div class="d-flex justify-content-between align-items-center project-wrapper" style="padding: 10px;">
-                        <div class="project-name" style="margin-right: 10px;">Project 16</div>
-                    </div>
-                </li>
+                {% endfor %}
             </ul>
-
-            </div>
-         
-         
-         
-            <!-- Bottom Box -->
+        </div>
+         <!-- Bottom Box -->
          <div class="offcanvas-bottom-box" style="padding: 10px; background-color: #212529; color: white;">
             <div class="d-flex align-items-center">
                 <!-- User Icon -->
@@ -151,14 +76,11 @@
                 </div>
                 <!-- User Name and Role -->
                 <div class="user-info">
-                    <div class="user-name"> John Doe</div>
-                    <div class="user-role">Chief Editor</div>
+                    <div class="user-name">{{ request.user.username }}</div>
+                    <div class="user-role">{{ request.user.user_type }}</div>
                 </div>
             </div>
         </div>
     </div>
-
 </body>
 </html>
-
-       

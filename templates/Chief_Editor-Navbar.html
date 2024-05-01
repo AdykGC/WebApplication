@@ -1,0 +1,12 @@
+<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+  <!-- Project 1 -->
+  {% for project in projects %}
+  <li class="nav-item mb-3" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='transparent'">
+      <a href="{% url 'project_detail_2' project.id %}" style="text-decoration: none; color: inherit;">
+          <div class="d-flex justify-content-between align-items-center project-wrapper" style="padding: 10px;">
+              <div class="project-name" style="margin-right: 10px;">{{ project.project_name }}</div>
+          </div>
+      </a>
+  </li>
+  {% endfor %}
+</ul>

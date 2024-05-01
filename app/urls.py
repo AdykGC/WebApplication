@@ -18,6 +18,5 @@ urlpatterns = [
 
 
     path('translator/<int:project_id>/', views.project_detail, name='project_detail'),
-# path('translator/<int:project_id>/', views.project2_detail, name='project2_detail'),
-
+    path('chief-editor/<int:project_id>/', views.project_detail_2, name='project_detail_2'),
 ]
