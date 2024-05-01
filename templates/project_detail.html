@@ -1,0 +1,12 @@
+
+<div> THE ID IS 1</div>
+{% endif %}
+<div> {{project.project_name}}</div>
+
+{% for activity in project.activities.all %}
+
+{{activity.name}}
+{{activity.status}}
+<br>
+
+{% endfor %}

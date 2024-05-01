@@ -56,22 +56,15 @@
         <div class="offcanvas-body">
             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                 <!-- Project 1 -->
+                {% for project in projects %}
                 <li class="nav-item mb-3" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='transparent'">
-                    <a href="{% url 'project1_detail' 1 %}" target="_blank" style="text-decoration: none; color: inherit;">
+                    <a href="{% url 'project_detail' project.id %}" style="text-decoration: none; color: inherit;">
                         <div class="d-flex justify-content-between align-items-center project-wrapper" style="padding: 10px;">
-                            <div class="project-name" style="margin-right: 10px;">Project 1</div>
+                            <div class="project-name" style="margin-right: 10px;">{{project.project_name}}</div>
                         </div>
                     </a>
                 </li>
-        
-                <!-- Project 2 -->
-                <li class="nav-item mb-3" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='transparent'">
-                    <a href="{% url 'project2_detail' 1 %}" target="_blank" style="text-decoration: none; color: inherit;">
-                        <div class="d-flex justify-content-between align-items-center project-wrapper" style="padding: 10px;">
-                            <div class="project-name" style="margin-right: 10px;">Project 2</div>
-                        </div>
-                    </a>
-                </li>
+                {% endfor %}
             </ul>
         </div>
          <!-- Bottom Box -->

@@ -9,21 +9,23 @@ from django.http import JsonResponse
 from django.http import HttpResponse
 from django.template import loader
 
-def project1_detail(request, project_id):
+
+
+def project_detail(request, project_id):
     # Получаем информацию о проекте 1 из базы данных
-    project = Project1.objects.get(pk=project_id)
+    project = Project.objects.get(pk=project_id)
     # Загружаем шаблон и передаем информацию о проекте
-    template = loader.get_template('project1_detail_template.html')
+    template = loader.get_template('project_detail.html')
     context = {'project': project}
     return HttpResponse(template.render(context, request))
 
-def project2_detail(request, project_id):
-    # Получаем информацию о проекте 2 из базы данных
-    project = Project2.objects.get(pk=project_id)
-    # Загружаем шаблон и передаем информацию о проекте
-    template = loader.get_template('project2_detail_template.html')
-    context = {'project': project}
-    return HttpResponse(template.render(context, request))
+# def project2_detail(request, project_id):
+#     # Получаем информацию о проекте 2 из базы данных
+#     project = Project.objects.get(pk=project_id)
+#     # Загружаем шаблон и передаем информацию о проекте
+#     template = loader.get_template('project2_detail_template.html')
+#     context = {'project': project}
+#     return HttpResponse(template.render(context, request))
 
 
 def index(request):
@@ -78,8 +80,48 @@ def handleregistration(request):
         return render(request, 'registration.html', {'form': form})
 
 def translator_home(request):
-    # Your logic for translator home page
-    return render(request, 'translator_home.html')
+    # Получаем все проекты из базы данных
+    all_projects = Project.objects.all()  # Предполагается, что ваша модель проекта называется Project
+
+    # Передаем все проекты в контекст шаблона
+    context = {
+        'projects': all_projects,
+    }
+
+    # Рендерим страницу 'translator_home.html' с переданным контекстом
+    return render(request, 'translator_home.html', context)
+
+
+# def edit_activity(request):
+    # if request.method == "POST":
+    #     form = EditActivityForm(request.POST)
+    #     if form.is_valid():
+
+
+# ТУТ КОД
+
+# def activity_edit(request):
+#     if request.method == 'POST':
+#         # Получение данных из POST-запроса
+#         data = json.loads(request.body)
+        
+#         # Извлечение данных
+#         completed = data.get('completed', False)
+#         name = data.get('name', '')
+
+#         # Поиск существующей активности по имени
+#         activity = get_object_or_404(Activity, name=name)
+
+#         # Обновление или создание активности
+#         activity.completed = completed
+#         activity.save()
+
+#         # Возвращение успешного ответа в формате JSON
+#         return JsonResponse({'status': 'success'})
+#     else:
+#         # Если метод запроса не POST, возвращаем ошибку
+#         return JsonResponse({'error': 'Only POST method is allowed'})
+
 
 
 
@@ -87,9 +129,10 @@ def chief_editor_home(request):
     # Your logic for chief editor home page
     return render(request, 'chief_editor_home.html')
 
+
 def successful_register(request):
     # Your logic for translator home page
-    return render(request, 'successful_register.html')
+    return render(request, 'successful_register.html', )
 
 def project_manager(request):
     projects = Project.objects.all()

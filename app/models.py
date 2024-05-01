@@ -27,10 +27,15 @@ class Project(models.Model):
     def __str__(self):
         return self.project_name
 # Модель для активности
+
+
+# Модель для активности
 class Activity(models.Model):
     # Поле для названия активности
-    name = models.CharField(max_length=100)
-
+    name = models.CharField(max_length=100, default="Active")
+    task_info = models.CharField(max_length=100, default="Change all letter to upper case in the beginning of the sentences if needed")
+    deadline = models.DateField(default='2024-05-07')
+    status = models.CharField(max_length=20, default="Not completed")
     # Поле для связи с проектом, ForeignKey указывает на связь "много к одному" (много активностей к одному проекту)
     project = models.ForeignKey('Project', related_name='activities', on_delete=models.CASCADE)
 

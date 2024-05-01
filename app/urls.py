@@ -15,11 +15,7 @@ urlpatterns = [
     path('project-manager/<int:project_id>/', views.project_manager, name='project_manager'),
     path('project-manager/', views.project_manager, name='project_manager'),
     path('project-detail/<int:project_id>/', views.project_manager_detail, name='project_manager_detail'),
-    
-path('translator/project1/<int:project_id>/', views.project1_detail, name='project1_detail'),
-path('translator/project2/<int:project_id>/', views.project2_detail, name='project2_detail'),
-
-path('some-view/', views.some_view, name='some_view'),
+    path('translator/<int:project_id>/', views.project_detail, name='project_detail'),
+# path('translator/<int:project_id>/', views.project2_detail, name='project2_detail'),
+    path('some-view/', views.some_view, name='some_view'),
 ]
-
-
