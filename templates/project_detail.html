@@ -1,12 +1,70 @@
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Подключаем CSS файл Bootstrap -->
+    <link href="{% static 'node_modules/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet"> 
+    <!-- Подключаем файлы JavaScript для некоторых компонентов и интерактивности -->
+    <script src="{% static 'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
+    <title>{{project.project_name}}</title>
+</head>
+<style>
+    .btn {
+        border: none;
+        padding: 0;
+        margin: 0;
+    }
+    .card {
+        margin: 0; /* убираем внешний отступ */
+    }
+    .card-header {
+        text-align: left; /* Выравниваем текст в заголовке влево */
+    }
+    .card-footer {
+        background-color: #007bff64; /* Замените на нужный цвет */
+    }
+</style>
+{% if project.project_id == 1 %}
 <div> THE ID IS 1</div>
 {% endif %}
 <div> {{project.project_name}}</div>
 
-{% for activity in project.activities.all %}
 
-{{activity.name}}
-{{activity.status}}
-<br>
 
-{% endfor %}
+<body>
+    <div class="container-fluid" style="margin-top: 70px;">
+        {% for activity in project.activities.all %}
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{ activity.id }}">
+            <div class="card text-bg-info" style="max-width: 30rem; min-width: 20rem;">
+                <div class="card-header">{{activity.status}}
+                    <br><br><br><br><br>
+                </div>
+                <div class="card-footer">{{ activity.name }}</div>
+            </div>
+        </button>
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop{{ activity.id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">{{ activity.name }}</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Здесь расположите содержимое вашего модального окна -->
+                        <p>{{ activity.task_info }}</p>
+                        <p>{{ activity.deadline }}</p>
+                        <!-- Например, поля ввода или другие элементы формы -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
