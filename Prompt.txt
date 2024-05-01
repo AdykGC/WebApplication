@@ -1,5 +1,6 @@
-activity.id id="staticBackdrop" 
-добавь 
+
+
+почему не отоброжает?
 
 
 
@@ -10,6 +11,8 @@ activity.id id="staticBackdrop"
 ------------------ Миграция ------------------
 python3 manage.py makemigrations
 python3 manage.py migrate
+
+
 
 ------------------ GIT ------------------
 Добавление изменений:
@@ -22,7 +25,17 @@ git pull origin main
 Отправка изменений на удаленный репозиторий:
 git push origin main
 
+
+
 ------------------ Python3 ------------------
 python3 manage.py runserver
 
 http://127.0.0.1:8000/
+http://127.0.0.1:8000/translator/
+
+
+
+
+python3 manage.py createsuperuser
+Superuser_1:   AGC  :  Adyk2004GameC
+User_1:   FourZeroFour  :  Four0Four!

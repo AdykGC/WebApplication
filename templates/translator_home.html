@@ -76,51 +76,11 @@
                 </div>
                 <!-- User Name and Role -->
                 <div class="user-info">
-                    <div class="user-name"> John Doe</div>
-                    <div class="user-role">Translator</div>
+                    <div class="user-name">{{ request.user.username }}</div>
+                    <div class="user-role">{{ request.user.user_type }}</div>
                 </div>
             </div>
         </div>
-    </div>
-
-
-    <div class="container-fluid" style="margin-top: 70px;">
-
-
-        
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            <div class="card text-bg-info" style="max-width: 30rem; min-width: 20rem;">
-                <div class="card-header">Nixuyaj mi vremia
-                    <br><br><br><br><br>
-                </div>
-                <div class="card-footer">{{ activity.name }}</div>
-            </div>
-        </button>
-        
-        <!-- Modal -->
-        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-xl">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">{{ activity.name }}</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <!-- Здесь расположите содержимое вашего модального окна -->
-                        <p>{{ custom_text }}</p>
-                        <p>{{ custom_text }}</p>
-                        <!-- Например, поля ввода или другие элементы формы -->
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Send</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
     </div>
 </body>
 </html>

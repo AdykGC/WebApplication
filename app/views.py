@@ -80,18 +80,21 @@ def handleregistration(request):
         return render(request, 'registration.html', {'form': form})
 
 def translator_home(request):
-    # Получаем все проекты из базы данных
-    all_projects = Project.objects.all()  # Предполагается, что ваша модель проекта называется Project
-
-    # Передаем все проекты в контекст шаблона
+    all_projects = Project.objects.all()
     context = {
         'projects': all_projects,
     }
-
-    # Рендерим страницу 'translator_home.html' с переданным контекстом
     return render(request, 'translator_home.html', context)
-
-
+def translator_detail(request):
+    all_projects = Project.objects.all()
+    context = {
+        'projects_detail': all_projects,
+    }
+    return render(request, 'project_detail.html', context)
+def project_detail(request, project_id):
+    project = Project.objects.get(id=project_id)
+    projects = Project.objects.all()  # Получаем список всех проектов
+    return render(request, 'project_detail.html', {'project': project, 'projects': projects})
 # def edit_activity(request):
     # if request.method == "POST":
     #     form = EditActivityForm(request.POST)
@@ -190,11 +193,3 @@ def project_manager_detail(request, project_id):
     return render(request, 'project_manager_detail.html', context)
 
 
-
-def some_view(request):
-    # Получение объекта Activity из базы данных
-    activity = "Ваше собственное значение для тега <p>"
-    custom_text = "Ваше собственное значение для тега <p>"
-    
-    # Передача объекта Activity и текста в контекст шаблона
-    return render(request, 'translator_home.html', {'activity': activity, 'custom_text': custom_text})
