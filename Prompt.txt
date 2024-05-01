@@ -22,3 +22,6 @@ git pull origin main
 
 Отправка изменений на удаленный репозиторий:
 git push origin main
+
+------------------ Python3 ------------------
+python3 manage.py runserver
