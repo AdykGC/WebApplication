@@ -6,8 +6,7 @@ from django.core.exceptions import ValidationError
 from .models import CustomUser
 import re
 from django import forms
-from .models import Project
-from .models import Activity
+from .models import Project, Activity
 
 class UserRegistrationForm(UserCreationForm):
     USER_TYPE_CHOICES = [
@@ -48,8 +47,8 @@ class UserRegistrationForm(UserCreationForm):
 
         return cleaned_data
 
-
 User = get_user_model()
+
 class CustomAuthenticationForm(forms.Form):
     username = forms.CharField(label='Username')
     password = forms.CharField(label='Password', widget=forms.PasswordInput)
@@ -64,12 +63,10 @@ class CustomAuthenticationForm(forms.Form):
                 raise forms.ValidationError('Invalid username or password.')
         return cleaned_data
 
-
 class ProjectForm(forms.ModelForm):
     class Meta:
         model = Project
         fields = ['project_name']
-
 
 class ActivityForm(forms.ModelForm):
     PERCENT_CHOICES = [
@@ -82,4 +79,4 @@ class ActivityForm(forms.ModelForm):
 
     class Meta:
         model = Activity
-        fields = ['name', 'percent_complete']
+        fields = ['percent_complete']

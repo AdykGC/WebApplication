@@ -106,7 +106,6 @@ def update_activity(request, activity_id):
     # Получаем объект из базы данных по его идентификатору
     activity = Activity.objects.get(id=activity_id)
     project = activity.project
-
     # Проверяем, был ли отправлен POST-запрос с обновленными данными
     if request.method == 'POST':
         # Получаем новый статус из POST-запроса
@@ -117,39 +116,25 @@ def update_activity(request, activity_id):
         activity.save()
         # Перенаправляем пользователя обратно на страницу деталей проекта
         return redirect(reverse('project_detail', kwargs={'project_id': project.id}))
-    
     # Если запрос не метода POST, возвращаем HttpResponse с информацией о том, что метод не поддерживается
     return HttpResponse("Метод не поддерживается")
 
-# def edit_activity(request):
-    # if request.method == "POST":
-    #     form = EditActivityForm(request.POST)
-    #     if form.is_valid():
-
-# ТУТ КОД
-
-# def activity_edit(request):
-#     if request.method == 'POST':
-#         # Получение данных из POST-запроса
-#         data = json.loads(request.body)
-        
-#         # Извлечение данных
-#         completed = data.get('completed', False)
-#         name = data.get('name', '')
-
-#         # Поиск существующей активности по имени
-#         activity = get_object_or_404(Activity, name=name)
-
-#         # Обновление или создание активности
-#         activity.completed = completed
-#         activity.save()
-
-#         # Возвращение успешного ответа в формате JSON
-#         return JsonResponse({'status': 'success'})
-#     else:
-#         # Если метод запроса не POST, возвращаем ошибку
-#         return JsonResponse({'error': 'Only POST method is allowed'})
-
+def update_activity_2(request, activity_id):
+    # Получаем объект из базы данных по его идентификатору
+    activity = Activity.objects.get(id=activity_id)
+    project = activity.project
+    # Проверяем, был ли отправлен POST-запрос с обновленными данными
+    if request.method == 'POST':
+        # Получаем новый статус из POST-запроса
+        new_status = request.POST.get('status')
+        # Обновляем поле статуса объекта
+        activity.status = new_status
+        # Сохраняем изменения в базе данных
+        activity.save()
+        # Перенаправляем пользователя обратно на страницу деталей проекта
+        return redirect(reverse('project_detail_2', kwargs={'project_id': project.id}))
+    # Если запрос не метода POST, возвращаем HttpResponse с информацией о том, что метод не поддерживается
+    return HttpResponse("Метод не поддерживается")
 
 
 

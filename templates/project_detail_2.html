@@ -101,7 +101,14 @@
                         <!-- Например, поля ввода или другие элементы формы -->
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Send</button>
+                        <form method="post" action="{% url 'update_activity_2' activity.id %}">
+                            {% csrf_token %}
+                            <select name="status" id="status">
+                                <option value="satisfactory result">satisfactory result</option>
+                                <option value="Unsatisfactory result">Unsatisfactory result</option>
+                            </select>
+                            <button type="submit" class="btn btn-primary">Send</button>
+                        </form>
                     </div>
                 </div>
             </div>

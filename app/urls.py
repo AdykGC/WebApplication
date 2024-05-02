@@ -22,4 +22,5 @@ urlpatterns = [
     path('chief-editor/<int:project_id>/', views.project_detail_2, name='project_detail_2'),
 
     path('update_activity/<int:activity_id>/', views.update_activity, name='update_activity'),
+    path('update_activity_2/<int:activity_id>/', views.update_activity_2, name='update_activity_2'),
 ]
