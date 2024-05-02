@@ -6,37 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Подключаем CSS файл Bootstrap -->
     <link href="{% static 'node_modules/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet"> 
+    <link href="{% static 'Need-File/New_Css.CSS' %}" rel="stylesheet">
+    <link href= "{% static 'IMG/Need-File-CSS.CSS' %}" rel="stylesheet">
+    <!-- Подключаем Google Fonts и Icons-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
     <!-- Подключаем файлы JavaScript для некоторых компонентов и интерактивности -->
     <script src="{% static 'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
     <title>Translator</title>
 </head>
-<style>
-    .btn {
-        border: none;
-        padding: 0;
-        margin: 0;
-    }
-    .card {
-        margin: 0; /* убираем внешний отступ */
-    }
-    .card-header {
-        text-align: left; /* Выравниваем текст в заголовке влево */
-    }
-    .card-footer {
-        background-color: #007bff64; /* Замените на нужный цвет */
-    }
-</style>
 <body>
     <!-- Фиксированный навигационный бар -->
-    <nav class="navbar navbar-dark bg-dark fixed-top">      
+    <nav class="navbar navbar-dark bg-dark fixed-top">
         <!-- Контейнер с полным охватом -->
         <div class="container-fluid">
             <!-- Ссылочное лого -->
             <a class="navbar-brand" href="#">
                 <img src="{% static 'IMG/error.jpg' %}" alt="Logo" width="40" height="30" class="d-inline-block align-text-top">
-                CORP
+                Four-Zero-Four
             </a>
             <!-- Кнопка для открытия модального окна -->
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
@@ -46,10 +36,10 @@
     </nav>
 
     <!-- Ссылочное меню ссылочной кнопки-->
-    <div class="offcanvas offcanvas-start text-bg-dark" data-bs-scroll="true" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+    <div class="offcanvas offcanvas-end text-bg-dark" data-bs-scroll="true" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
         <!-- Head меню -->
         <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">TEXT-O-MATIC</h5>
+            <p class="offcanvas-title P-Size-1 Google-Font-Oswald" id="offcanvasDarkNavbarLabel">Four-Zero-Four</p>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <!-- Body меню -->
@@ -69,6 +59,29 @@
         </div>
          <!-- Bottom Box -->
          <div class="offcanvas-bottom-box" style="padding: 10px; background-color: #212529; color: white;">
+            <!-- Notif -->
+            <div class="Notification">
+                <ul class="nav-item dropdown navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Notification
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            {% for activity in project.activities.all %}
+                                {% if activity.status == "Unsatisfactory result" %}
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'project_detail' activity.project.id %}" style="text-decoration: none; color: inherit; width: 100%;">
+                                        <p>Project: {{ activity.project.id }} <br> Activity: {{ activity.name }} <br> Status: Unsatisfactory result</p>
+                                    </a>
+                                </li>
+                                {% else %}
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <br>
             <div class="d-flex align-items-center">
                 <!-- User Icon -->
                 <div class="user-icon" style="margin-right: 10px;">

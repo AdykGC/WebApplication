@@ -5,6 +5,7 @@
     <!-- Подключаем CSS файл Bootstrap -->
     <link href="{% static 'node_modules/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet"> 
     <link href="{% static 'Need-File/New_Css.CSS' %}" rel="stylesheet">
+    <link href= "{% static 'IMG/Need-File-CSS.CSS' %}" rel="stylesheet">
     <!-- Подключаем Google Fonts и Icons-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,10 +17,9 @@
     <title>{{project.project_name}}</title>
 </head>
 
-
 <body>
     <!-- Фиксированный навигационный бар -->
-    <nav class="navbar navbar-dark bg-dark fixed-top">      
+    <nav class="navbar navbar-dark bg-dark fixed-top">
         <!-- Контейнер с полным охватом -->
         <div class="container-fluid">
             <!-- Ссылочное лого -->
@@ -47,6 +47,29 @@
         </div>
          <!-- Bottom Box -->
          <div class="offcanvas-bottom-box" style="padding: 10px; background-color: #212529; color: white;">
+            <!-- Notif -->
+            <div class="Notification">
+                <ul class="nav-item dropdown navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Notification
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            {% for activity in project.activities.all %}
+                                {% if activity.status == "Unsatisfactory result" %}
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'project_detail' activity.project.id %}" style="text-decoration: none; color: inherit; width: 100%;">
+                                        <p>Project: {{ activity.project.id }} <br> Activity: {{ activity.name }} <br> Status: Unsatisfactory result</p>
+                                    </a>
+                                </li>
+                                {% else %}
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <br>
             <div class="d-flex align-items-center">
                 <!-- User Icon -->
                 <div class="user-icon" style="margin-right: 10px;">
