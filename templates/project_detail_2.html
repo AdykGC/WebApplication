@@ -5,6 +5,7 @@
     <!-- Подключаем CSS файл Bootstrap -->
     <link href="{% static 'node_modules/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet"> 
     <link href="{% static 'Need-File/New_Css.CSS' %}" rel="stylesheet">
+    <link href= "{% static 'IMG/Need-File-CSS.CSS' %}" rel="stylesheet">
     <!-- Подключаем Google Fonts и Icons-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,7 +25,7 @@
             <!-- Ссылочное лого -->
             <a class="navbar-brand" href="#">
                 <img src="{% static 'IMG/error.jpg' %}" alt="Logo" width="40" height="30" class="d-inline-block align-text-top">
-                CORP
+                Four-Zero-Four
             </a>
             <!-- Кнопка для открытия модального окна -->
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
@@ -34,10 +35,10 @@
     </nav>
 
     <!-- Ссылочное меню ссылочной кнопки-->
-    <div class="offcanvas offcanvas-start text-bg-dark" data-bs-scroll="true" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+    <div class="offcanvas offcanvas-end text-bg-dark" data-bs-scroll="true" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
         <!-- Head меню -->
         <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">TEXT-O-MATIC</h5>
+            <p class="offcanvas-title P-Size-1 Google-Font-Oswald" id="offcanvasDarkNavbarLabel">Four-Zero-Four</p>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <!-- Body меню -->
@@ -45,7 +46,30 @@
             {% include 'Chief_Editor-Navbar.html' %}
         </div>
          <!-- Bottom Box -->
-         <div class="offcanvas-bottom-box" style="padding: 10px; background-color: #212529; color: white;">
+        <div class="offcanvas-bottom-box" style="padding: 10px; background-color: #212529; color: white;">
+            <!-- Notif -->
+            <div class="Notification">
+                <ul class="nav-item dropdown navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Notification
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            {% for activity in project.activities.all %}
+                                {% if activity.status == "100" %}
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'project_detail_2' activity.project.id %}" style="text-decoration: none; color: inherit; width: 100%;">
+                                        <p>Project: {{ activity.project.id }} <br> Activity: {{ activity.name }} <br> Status: Ready to check</p>
+                                    </a>
+                                </li>
+                                {% else %}
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <br>
             <div class="d-flex align-items-center">
                 <!-- User Icon -->
                 <div class="user-icon" style="margin-right: 10px;">

@@ -4,6 +4,7 @@ from . import views
 
 urlpatterns = [
     path("", views.handleregistration, name='registration'),
+    path("ind", views.index, name='index'),
     path("about/", views.about, name='about'),
     path("contact/", views.contact, name='contact'),  # Added comma here
     path("login/", views.handlelogin, name='login'),  # Added comma here
