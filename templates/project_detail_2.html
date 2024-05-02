@@ -4,40 +4,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Подключаем CSS файл Bootstrap -->
     <link href="{% static 'node_modules/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet"> 
+    <link href="{% static 'Need-File/New_Css.CSS' %}" rel="stylesheet">
+    <!-- Подключаем Google Fonts и Icons-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
     <!-- Подключаем файлы JavaScript для некоторых компонентов и интерактивности -->
     <script src="{% static 'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
     <title>{{project.project_name}}</title>
 </head>
-<style>
-    .ALL-ACTIVE {
-        margin: auto;
-        text-align: center;
-        margin-top: 80px
-    }
-    .btn {
-        padding: 0;
-        margin: 0 1rem 1rem 0;
-    }
-    .card {
-        width: 24rem;
-        background-color: #bababa;
-    }
-    .card-header {
-        padding-top: 18px;
-        padding-bottom: 10px;
-        text-align: left; /* Выравниваем текст в заголовке влево */
-    }
-    .card-footer {
-        background-color: #008080; /* Замените на нужный цвет */
-        color: #f6f8fe;
-    }
-    .progress{
-        height: 1.3rem;
-        margin-top: 1rem;
-    }
-</style>
 
 <body>
     <!-- Фиксированный навигационный бар -->
@@ -92,8 +69,9 @@
         <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{ activity.id }}">
             <div class="card">
                 <div class="card-header">
-                    <img src="{% static 'IMG/error.jpg' %}" alt="Logo" width="350px" height="150" class="d-inline-block align-text-top" style="border-radius: 3px;"></img>
-                    <div class="progress">
+                    <img src="{% static 'IMG/error.jpg' %}" alt="Logo"></img>
+                    <p class="Google-Font-Oswald">{{ activity.deadline }}</p>
+                    <div class="progress Google-Font-Oswald">
                         {% if activity.status == "Unsatisfactory result" %}
                          <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" aria-label="Danger striped example" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
                              {{ activity.status }}
@@ -123,31 +101,33 @@
                         {% endif %}
                     </div>
                 </div>
-                <div class="card-footer">{{ activity.name }}</div>
+                <div class="card-footer Google-Font-Oswald">{{ activity.name }}</div>
             </div>
         </button>
         <!-- Modal -->
-        <div class="modal fade" id="staticBackdrop{{ activity.id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-xl">
-                <div class="modal-content">
+        <div class="MODAL modal fade" id="staticBackdrop{{ activity.id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="MODAL_DIALOG modal-dialog modal-dialog-centered modal-xl">
+                <div class="modal-content Google-Font-Oswald">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="staticBackdropLabel">{{ activity.name }}</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <!-- Здесь расположите содержимое вашего модального окна -->
+                        <br>
                         <p>{{ activity.task_info }}</p>
-                        <p>{{ activity.deadline }}</p>
+                        <br><br><br>
+                        <p>Deadline of this activity: {{ activity.deadline }}</p>
                         <!-- Например, поля ввода или другие элементы формы -->
                     </div>
                     <div class="modal-footer">
                         <form method="post" action="{% url 'update_activity_2' activity.id %}">
                             {% csrf_token %}
-                            <select name="status" id="status">
-                                <option value="Satisfactory result">Satisfactory result</option>
+                            <select name="status" id="status" >
                                 <option value="Unsatisfactory result">Unsatisfactory result</option>
+                                <option value="Satisfactory result">Satisfactory result</option>
                             </select>
-                            <button type="submit" class="btn btn-primary">Send</button>
+                            <button type="submit" class="btn d-inline-block align-text-top">Send</button>
                         </form>
                     </div>
                 </div>
