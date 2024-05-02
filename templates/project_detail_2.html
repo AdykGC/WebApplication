@@ -17,12 +17,12 @@
         margin-top: 80px
     }
     .btn {
-        border: none;
         padding: 0;
         margin: 0 1rem 1rem 0;
     }
     .card {
         width: 24rem;
+        background-color: #bababa;
     }
     .card-header {
         padding-top: 18px;
@@ -30,16 +30,16 @@
         text-align: left; /* Выравниваем текст в заголовке влево */
     }
     .card-footer {
-        background-color: #007bff64; /* Замените на нужный цвет */
+        background-color: #008080; /* Замените на нужный цвет */
+        color: #f6f8fe;
     }
     .progress{
-        height: 1.7rem;
+        height: 1.3rem;
         margin-top: 1rem;
     }
 </style>
 
 <body>
-
     <!-- Фиксированный навигационный бар -->
     <nav class="navbar navbar-dark bg-dark fixed-top">      
         <!-- Контейнер с полным охватом -->
@@ -89,8 +89,8 @@
     <div class="ALL-ACTIVE">
         {% for activity in project.activities.all %}
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{ activity.id }}">
-            <div class="card text-bg-info">
+        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{ activity.id }}">
+            <div class="card">
                 <div class="card-header">
                     <img src="{% static 'IMG/error.jpg' %}" alt="Logo" width="350px" height="150" class="d-inline-block align-text-top" style="border-radius: 3px;"></img>
                     <div class="progress">
@@ -103,23 +103,23 @@
                             {{ activity.status }}
                         </div>
                         {% else %}
-                        {% if activity.status == "0" %}
-                        <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" aria-label="Warning striped example" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                            {{ activity.status }}
-                        </div>
-                        {% elif activity.status == "33" %}
-                        <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" aria-label="Warning striped example" style="width: 33%" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100">
-                            {{ activity.status }}
-                        </div>
-                         {% elif activity.status == "66" %}
-                         <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" aria-label="Warning striped example" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100">
-                            {{ activity.status }}
-                        </div>
-                        {% elif activity.status == "100" %}
-                        <div class="progress-bar progress-bar-striped" role="progressbar" aria-label="Warning striped example" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                            {{ activity.status }}
-                        </div>
-                        {% endif %}
+                            {% if activity.status == "0" %}
+                            <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" aria-label="Warning striped example" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                
+                            </div>
+                            {% elif activity.status == "33" %}
+                            <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" aria-label="Warning striped example" style="width: 33%" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100">
+                                
+                            </div>
+                            {% elif activity.status == "66" %}
+                            <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" aria-label="Warning striped example" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100">
+                                
+                            </div>
+                            {% elif activity.status == "100" %}
+                            <div class="progress-bar progress-bar-striped" role="progressbar" aria-label="Warning striped example" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                Ready to check
+                            </div>
+                            {% endif %}
                         {% endif %}
                     </div>
                 </div>

@@ -11,24 +11,35 @@
     <title>{{project.project_name}}</title>
 </head>
 <style>
+    .ALL-ACTIVE {
+        margin: auto;
+        text-align: center;
+        margin-top: 80px
+    }
     .btn {
-        border: none;
         padding: 0;
-        margin: 0;
+        margin: 0 1rem 1rem 0;
     }
     .card {
-        margin: 0; /* убираем внешний отступ */
+        width: 24rem;
+        background-color: #bababa;
     }
     .card-header {
+        padding-top: 18px;
+        padding-bottom: 10px;
         text-align: left; /* Выравниваем текст в заголовке влево */
     }
     .card-footer {
-        background-color: #007bff64; /* Замените на нужный цвет */
+        background-color: #008080; /* Замените на нужный цвет */
+        color: #f6f8fe;
+    }
+    .progress{
+        height: 1.3rem;
+        margin-top: 1rem;
     }
 </style>
 
 <body>
-
     <!-- Фиксированный навигационный бар -->
     <nav class="navbar navbar-dark bg-dark fixed-top">      
         <!-- Контейнер с полным охватом -->
@@ -74,14 +85,42 @@
 
 
 
-
-    <div class="container-fluid" style="margin-top: 70px;">
+    <div class="ALL-ACTIVE">
         {% for activity in project.activities.all %}
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{ activity.id }}">
-            <div class="card text-bg-info" style="max-width: 30rem; min-width: 20rem;">
-                <div class="card-header">{{activity.status}}
-                    <br><br><br><br><br>
+        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{ activity.id }}">
+            <div class="card">
+                <div class="card-header">
+                    <img src="{% static 'IMG/error.jpg' %}" alt="Logo" width="350px" height="150" class="d-inline-block align-text-top" style="border-radius: 3px;"></img>
+                    <div class="progress">
+                        {% if activity.status == "Unsatisfactory result" %}
+                        <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" aria-label="Danger striped example" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                            {{ activity.status }}
+                        </div>
+                        {% elif activity.status == "Satisfactory result" %}
+                        <div class="progress-bar progress-bar-striped bg-success" role="progressbar" aria-label="Success striped example" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                            {{ activity.status }}
+                        </div>
+                        {% else %}
+                            {% if activity.status == "0" %}
+                            <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" aria-label="Warning striped example" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                
+                            </div>
+                            {% elif activity.status == "33" %}
+                            <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" aria-label="Warning striped example" style="width: 33%" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100">
+                                
+                            </div>
+                            {% elif activity.status == "66" %}
+                            <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" aria-label="Warning striped example" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100">
+                                
+                            </div>
+                            {% elif activity.status == "100" %}
+                            <div class="progress-bar progress-bar-striped" role="progressbar" aria-label="Warning striped example" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                Ready to check
+                            </div>
+                            {% endif %}
+                        {% endif %}
+                    </div>
                 </div>
                 <div class="card-footer">{{ activity.name }}</div>
             </div>
@@ -101,16 +140,19 @@
                         <!-- Например, поля ввода или другие элементы формы -->
                     </div>
                     <div class="modal-footer">
-                        <form method="post" action="{% url 'update_activity' activity.id %}">
-                            {% csrf_token %}
-                            <select name="status" id="status">
-                                <option value="0">0%</option>
-                                <option value="33">33%</option>
-                                <option value="66">66%</option>
-                                <option value="100">100%</option>
-                            </select>
-                            <button type="submit" class="btn btn-primary">Send</button>
-                        </form>
+                        {% if activity.status == "Satisfactory result" %}
+                        {% else %}
+                            <form method="post" action="{% url 'update_activity' activity.id %}">
+                                {% csrf_token %}
+                                <select name="status" id="status">
+                                    <option value="0">0%</option>
+                                    <option value="33">33%</option>
+                                    <option value="66">66%</option>
+                                    <option value="100">100%</option>
+                                </select>
+                                <button type="submit" class="btn btn-primary">Send</button>
+                            </form>
+                        {% endif %}
                     </div>
                 </div>
             </div>
