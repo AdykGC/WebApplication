@@ -164,23 +164,49 @@
                         </div>
                         <div class="modal-body">
                             {% if activity.status == "Satisfactory result" %}
-                                <p>Satisfactory result</p>
-                            {% else %}
                                 <form method="post" action="{% url 'update_activity_2' activity.id %}">
                                     {% csrf_token %}
                                     <div class="mb-3">
                                         <label class="form-label">Progress</label>
                                         <select class="form-select" name="status" id="status">
-                                            <option value="0">0%</option>
-                                            <option value="33">33%</option>
-                                            <option value="66">66%</option>
-                                            <option value="100">100%</option>
+                                            <option value="Unsatisfactory result">Unsatisfactory result</option>
+                                            <option value="Satisfactory result">Satisfactory result</option>
                                         </select>
                                     </div>
                                     <button type="submit" class="btn btn-primary">
                                         Save Changes
                                     </button>
                                 </form>
+                            {% elif activity.status == "Unsatisfactory result" %}
+                                <form method="post" action="{% url 'update_activity_2' activity.id %}">
+                                    {% csrf_token %}
+                                    <div class="mb-3">
+                                        <label class="form-label">Progress</label>
+                                        <select class="form-select" name="status" id="status">
+                                            <option value="Unsatisfactory result">Unsatisfactory result</option>
+                                            <option value="Satisfactory result">Satisfactory result</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">
+                                        Save Changes
+                                    </button>
+                            </form>
+                            {% elif activity.status == "100" %}
+                                <form method="post" action="{% url 'update_activity_2' activity.id %}">
+                                    {% csrf_token %}
+                                    <div class="mb-3">
+                                        <label class="form-label">Progress</label>
+                                        <select class="form-select" name="status" id="status">
+                                            <option value="Unsatisfactory result">Unsatisfactory result</option>
+                                            <option value="Satisfactory result">Satisfactory result</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">
+                                        Save Changes
+                                    </button>
+                                </form>
+                            {% else %}
+                                <p>Not committed</p>
                             {% endif %}
                         </div>
                     </div>
