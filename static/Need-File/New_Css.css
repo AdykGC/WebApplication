@@ -6,6 +6,13 @@
     --COLOR--5: #08bcd02f;
     --COLOR--6: #001018;
     --COLOR--7: #051f2d;
+
+    --COLOR--BAD: #db3434b5;
+    --COLOR--GOOD: #34db3cb5;
+    --COLOR--0: #21252929;
+    --COLOR--33: #db5b3487;
+    --COLOR--66: #f6ff06a1;
+    --COLOR--100: #0001ff87;
 }
 .Google-Font-Oswald{
     font-family: "Oswald", sans-serif;
@@ -119,7 +126,6 @@ body {
 .cards-container .card .card-body .progress{
     height: 1.0rem;
     margin-top: 0.3rem;
-    background: var(--COLOR--2);
 }
 #Logo {
     justify-content: center;
@@ -149,4 +155,49 @@ body {
     background-color: #333;
     /* Change #333 to whatever color you prefer for hover */
     cursor: pointer;
+}
+
+
+.progress-bar-0 {
+    background-color: var(--COLOR--0); /* Цвет заполненной части */
+}
+.progress-bar-0::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: var(--COLOR--0); /* Цвет не заполненной части */
+}
+.progress-bar-33 {
+    background-color: var(--COLOR--0); /* Цвет заполненной части */
+}
+.progress-bar-33::before {
+    content: "";
+    display: block;
+    width: 33%;
+    height: 100%;
+    background-color: var(--COLOR--33); /* Цвет не заполненной части */
+}
+.progress-bar-66 {
+    background-color: var(--COLOR--0); /* Цвет заполненной части */
+    width: 34%;
+}
+.progress-bar-66::before {
+    content: "";
+    display: block;
+    width: 66%;
+    height: 100%;
+    background-color: var(--COLOR--66); /* Цвет не заполненной части */
+}
+.progress-bar-100 {
+    background-color: var(--COLOR--100); /* Цвет заполненной части */
+    color: #00000069;
+}
+.progress-bar-Good {
+    background-color: var(--COLOR--GOOD); /* Цвет заполненной части */
+    color: #00000069;
+}
+.progress-bar-Bad {
+    background-color: var(--COLOR--BAD); /* Цвет заполненной части */
+    color: #00000069;
 }
