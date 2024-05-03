@@ -110,7 +110,7 @@
         </div>
         <div class="cards-container">
             {% for activity in translator_activitys %}
-            <button type="button" class="btn card border-dark mb-3" data-bs-toggle="modal" data-bs-target="#activityModal{{ activity.id }}" data-project-id="{{ activity.project }}" style="min-width: 22rem; padding: 0;" data-project-id="{{ activity.project_id }}">
+            <button type="button" class="btn card border-dark mb-3" data-bs-toggle="modal" data-bs-target="#activityModal{{ activity.id }}" data-project-id="{{ activity.project.id }}" style="min-width: 22rem; padding: 0;">
                 <!--  Header  -->
                 <div class="card-header bg-dark text-white">
                     {{ activity.name }}
