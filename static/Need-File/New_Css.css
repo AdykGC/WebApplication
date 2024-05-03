@@ -1,14 +1,11 @@
 :root{
-   --COLOR--1: #233946a3;
-   --COLOR--2: #08bcd08d;
-   --COLOR--3: #ffffff;
-   --COLOR--4: #233946;
-   --COLOR--5: #08bcd02f;
-   --COLOR--6: #001018;
-   --COLOR--7: #051f2d;
-}
-body{
-    background-color: var(--COLOR--6);
+    --COLOR--1: #233946a3;
+    --COLOR--2: #08bcd08d;
+    --COLOR--3: #ffffff;
+    --COLOR--4: #233946;
+    --COLOR--5: #08bcd02f;
+    --COLOR--6: #001018;
+    --COLOR--7: #051f2d;
 }
 .Google-Font-Oswald{
     font-family: "Oswald", sans-serif;
@@ -60,12 +57,6 @@ body{
     background-color: var(--COLOR--2);
     color: var(--COLOR--3);
 }
-.ALL-ACTIVE .MODAL{
-
-}
-.ALL-ACTIVE .MODAL .MODAL_DIALOG{
-
-}
 .ALL-ACTIVE .MODAL .MODAL_DIALOG .modal-content{
     border: var(--COLOR--3) solid 0.1rem;
     background-color: var(--COLOR--7);
@@ -89,4 +80,73 @@ body{
     background-color: var(--COLOR--3);
     color: var(--COLOR--6);
     width: 100px;
+}
+/*============================================= New Activity =============================================*/
+body {
+    background-color: #e9eaea;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.cards-container {
+    display: flex;
+    align-content: normal;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.cards-container .card {
+    flex: 0 0 calc(18% - 2%);
+    margin: 1%;
+    cursor: pointer;
+}
+.cards-container .card .card-header {
+    border-radius: var(--bs-card-inner-border-radius) var(--bs-card-inner-border-radius) 0 0;
+    width: 100%;
+    padding: 10px;
+}
+.cards-container .card .card-body {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    text-align: start;
+    justify-content: flex-end;
+}
+.cards-container .card .card-body .card-date{
+    font-size: 0.8rem;
+    margin-top: 0.3rem;
+}
+.cards-container .card .card-body .progress{
+    height: 1.0rem;
+    margin-top: 0.3rem;
+    background: var(--COLOR--2);
+}
+#Logo {
+    justify-content: center;
+}
+#projectDetailsCanvas {
+    height: 100%;
+}
+.btn-circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #333;
+    color: white;
+    border: none;
+}
+.btn-circle .fas {
+    font-size: 24px;
+}
+.selected-project {
+    background-color: #007bff;
+    color: white;
+}
+.project-wrapper:hover {
+    background-color: #333;
+    /* Change #333 to whatever color you prefer for hover */
+    cursor: pointer;
 }

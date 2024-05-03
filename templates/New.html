@@ -1,0 +1,381 @@
+{% load static %}
+<!DOCTYPE HTML>
+<HTML lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>Translator</title>
+</head>
+<body>
+    <!-- Фиксированный навигационный бар -->
+    <nav class="navbar navbar-dark bg-dark fixed-top">      
+        <!-- Контейнер с полным охватом -->
+        <div class="container-fluid">
+            <!-- Кнопка для открытия модального окна -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Ссылочное лого -->
+            <a class="navbar-brand" href="/project-manager">
+                <img src="{% static 'IMG/Atom_icon.png' %}" id="Logo" alt="Logo" width="95" height="20" class="d-inline-block" style="margin-bottom: 7px">
+            </a>
+        </div>
+    </nav>
+
+    <div class="container mt-5 pt-5">
+        <h2 id="selectedProjectName" style="font-family: Roboto">Select a project</h2>
+    </div>
+    
+    <div class="cards-container">
+        <!-- Create Activity Card -->
+        <div class="card text-bg-dark d-flex justify-content-center align-items-center" style="flex: 0 0 18%; margin: 1%;" data-bs-toggle="modal" data-bs-target="#createActivityModal">
+            <div class="btn btn-primary btn-circle btn-lg" style="border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                <i class="fas fa-plus"></i>
+            </div>
+            <p class="card-text" style="font-family: Roboto; text-align: center;">Create New Activity</p>
+        </div>
+    
+        <!-- Other Cards -->
+        {% for activity in activities %}
+    <div class="card text-bg-danger mb-3" style="flex: 0 0 18%; margin: 1%;" data-bs-toggle="modal" data-bs-target="#activityModal{{ activity.id }}" data-project-id="{{ activity.project_id }}">
+        <div class="card-header">{{ activity.status }}</div>
+        <div class="card-body">
+            <h5 class="card-title">{{ activity.activity_name }}</h5>
+            <p class="card-text">Deadline: {{ activity.deadline }}</p>
+        </div>
+    </div>
+
+    <!-- Activity Modal -->
+    <div class="modal fade" id="activityModal{{ activity.id }}" tabindex="-1" aria-labelledby="activityModalLabel{{ activity.id }}" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="activityModalLabel{{ activity.id }}">{{ activity.activity_name }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Activity details here...</p>
+                    <!-- You can add more details about the activity inside this modal body -->
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+        <!-- Repeat similar blocks for other cards -->
+    </div>
+    
+   
+    <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="projectDetailsCanvas" aria-labelledby="projectDetailsLabel" style="left: 21%">
+        <div class="offcanvas-header">
+            <h5 id="projectDetailsLabel" class="offcanvas-title" style="font-family: Roboto">Project Details</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        
+        <div class="offcanvas-body">
+            <p id="projectDeadline" style="font-family: Roboto">Deadline: {{ project.deadline }}</p>
+            <p id="projectStatus" style="font-family: Roboto">Status: {{ project.status }}</p>
+        </div>
+        
+    </div>
+    
+    <!-- Ссылочное меню ссылочной кнопки-->
+    <div class="offcanvas offcanvas-start text-bg-dark" data-bs-scroll="true" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+        <!-- Head меню -->
+        <div class="offcanvas-header">
+            <a class="navbar-brand" href="/project-manager">
+                <img src="{% static 'IMG/Atom_icon.png' %}" id="Logo" alt="Logo" width="95" height="20" class="d-inline-block" style="margin-left: 7px">
+            </a>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+
+        
+        <!-- Body меню -->
+        <div class="offcanvas-body">
+            
+            
+            <!-- Project List -->
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                
+                <p class="d-inline-flex gap-1">
+                    
+                    <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" style="font-family: Roboto">
+                        My Projects
+                    </button>
+                  </p>
+                  <div class="collapse" id="collapseExample">
+                    <div class="card text-bg-dark mb-3 border-secondary mb-3 card-body">
+                        {% for project in projects %}
+<li class="nav-item mb-3" data-project-id="{{ project.id }}" onmouseover="this.style.backgroundColor='#333'"data-project-deadline="{{ project.deadline }}" data-project-status="{{ project.status }}" onmouseout="this.style.backgroundColor='transparent'">
+<div class="d-flex justify-content-between align-items-center project-wrapper" style="padding: 10px;">
+<div class="project-name" style="margin-right: 10px; font-family: Roboto;">{{ project.project_name }}</div>
+<button type="button" class="btn btn-link edit-btn" data-bs-toggle="modal"
+data-bs-target="#editProjectModal{{ project.id }}">
+<i class="fas fa-pencil-alt"></i>
+
+</button>
+</div>
+</li>
+                        {% endfor %}
+                    </div>
+                  </div>
+                
+            </ul>
+        </div>
+
+        
+
+        <!-- Plus Sign Button Box -->
+        <div class="plus-button-box d-flex justify-content-center align-items-center" style="padding: 10px; background-color: #212529; color: white;">
+            <button type="button" class="btn btn-primary btn-circle btn-lg" data-bs-toggle="modal" data-bs-target="#createProjectModal">
+                <i class="fas fa-plus"></i>
+            </button>
+        </div>        
+
+        <!-- Bottom Box -->
+        <div class="offcanvas-bottom-box" style="padding: 10px; background-color: #212529; color: white;">
+            <div class="d-flex align-items-center">
+                <!-- User Icon -->
+                <div class="user-icon" style="margin-right: 10px;">
+                    <img src="{% static 'IMG/Atom_user_icon.png' %}" alt="User Icon" width="50" height="50" style="border-radius: 50%;">
+                </div>
+                <!-- User Name and Role -->
+                <div class="user-info">
+                    <div class="user-name" style="font-family: Roboto">{{ request.user.username }}</div>
+                    <div class="user-role" style="font-family: Roboto">{{ request.user.user_type }}</div>
+                </div>
+            </div>
+        </div>
+     </div>
+    </div>
+
+        {% for project in projects %}
+    <!-- ... existing project list items ... -->
+    <!-- Edit Project Modal -->
+    <div class="modal fade" id="editProjectModal{{ project.id }}" tabindex="-1" aria-labelledby="editProjectModalLabel{{ project.id }}" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editProjectModalLabel{{ project.id }}">Edit Project</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="{% url 'update_project' project.id %}">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="projectName{{ project.id }}" class="form-label" style="font-family: Roboto">Project Name</label>
+                            <input type="text" class="form-control" id="projectName{{ project.id }}" name="project_name" value="{{ project.project_name }}" style="font-family: Roboto">
+                        </div>
+                        <!-- Deadline Input -->
+                        <div class="mb-3">
+                            <label for="deadline" class="form-label" style="font-family: Roboto">Deadline</label>
+                            <input type="date" class="form-control" id="deadline" name="deadline" style="font-family: Roboto">
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="font-family: Roboto">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+    <!-- Create Project Modal -->
+    <div class="modal fade" id="createProjectModal" tabindex="-1" aria-labelledby="createProjectModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="projectManagerOffcanvasLabel" style="font-family: Roboto">Create Project</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <form method="post" action="{% url 'project_manager_home' %}">
+                        {% csrf_token %}
+                        <!-- Project Name Input -->
+                        <div class="mb-3">
+                            <label for="projectName" class="form-label" style="font-family: Roboto">Project Name</label>
+                            <input type="text" class="form-control" id="projectName" name="project_name" style="font-family: Roboto">
+                        </div>
+                        <!-- Translator Input as Bootstrap Dropdown -->
+                        
+                        <!-- Deadline Input -->
+                        <div class="mb-3">
+                            <label for="deadline" class="form-label" style="font-family: Roboto">Deadline</label>
+                            <input type="date" class="form-control" id="deadline" name="deadline" style="font-family: Roboto">
+                        </div>
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn btn-primary" style="font-family: Roboto">Create Project</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="createActivityModal" tabindex="-1" aria-labelledby="createProjectModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="projectManagerOffcanvasLabel" style="font-family: Roboto">Create Activity</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <form method="post" action="{% url 'project_manager_check' %}">
+                        {% csrf_token %}
+                        <!-- Project Name Input -->
+                        <div class="mb-3">
+                            <label for="activityName" class="form-label" style="font-family: Roboto">Activity Name</label>
+                            <input type="text" class="form-control" id="activityName" name="activity_name" style="font-family: Roboto">
+                        </div>
+                        <div class="mb-3">
+                            <label for="translator" class="form-label">Select Translator</label>
+                            <select class="form-select" id="translator" name="translator">
+                                {% for translator in translators %}
+                                    <option value="{{ translator.username }}">{{ translator.username }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <!-- Project Selection Dropdown -->
+                        <div class="mb-3">
+                            <label for="project" class="form-label" style="font-family: Roboto">Select Project</label>
+                            <select class="form-select" id="project" name="project">
+                                {% for project in projects %}
+                                    <option value="{{ project.id }}">{{ project.project_name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <!-- Deadline Input -->
+                        <div class="mb-3">
+                            <label for="deadline" class="form-label" style="font-family: Roboto">Deadline</label>
+                            <input type="date" class="form-control" id="deadline" name="deadline" style="font-family: Roboto">
+                        </div>
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn btn-primary" style="font-family: Roboto">Create Activity</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const projectItems = document.querySelectorAll(".nav-item");
+            const projectDetailsCanvas = new bootstrap.Offcanvas(document.getElementById('projectDetailsCanvas'));
+        
+            projectItems.forEach(item => {
+                item.addEventListener("click", function () {
+                    // Remove selected-project class from all other items
+                    projectItems.forEach(otherItem => {
+                        otherItem.classList.remove('selected-project');
+                    });
+        
+                    // Add selected-project class to the clicked item
+                    this.classList.add('selected-project');
+        
+                    const projectName = this.querySelector(".project-name").textContent;
+                    const projectDeadline = this.getAttribute('data-project-deadline');
+                    const projectStatus = this.getAttribute('data-project-status');
+        
+                    // Update selected project display
+                    document.getElementById("selectedProjectName").textContent = projectName;
+        
+                    // Update project details offcanvas
+                    document.getElementById("projectDetailsLabel").textContent = projectName;
+                    document.getElementById("projectDeadline").textContent = 'Deadline: ' + projectDeadline;
+                    document.getElementById("projectStatus").textContent = 'Status: ' + projectStatus;
+        
+                    // Show the project details offcanvas
+                    projectDetailsCanvas.show();
+                });
+            });
+        });
+        
+        
+    </script>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Select all project items and activity cards
+            const projectItems = document.querySelectorAll(".nav-item");
+            const activityCards = document.querySelectorAll(".cards-container .card");
+    
+            // Attach event listeners to each project item
+            projectItems.forEach(item => {
+                item.addEventListener("click", function (event) {
+                    event.preventDefault(); // Prevent default action (e.g., anchor click)
+    
+                    // Retrieve the project ID from the clicked item
+                    const projectId = this.getAttribute('data-project-id');
+    
+                    // Filter activity cards based on the project ID
+                    activityCards.forEach(card => {
+                        if (card.getAttribute('data-project-id') === projectId) {
+                            card.style.display = 'flex'; // Show card if IDs match
+                        } else {
+                            card.style.display = 'none'; // Otherwise, hide card
+                        }
+                    });
+                });
+            });
+        });
+        
+    </script>
+</body>
+</html>
+
+<style>
+    .cards-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start; /* Aligns items to the start of the container */
+    }
+    
+    .cards-container .card {
+        flex: 0 0 18%; /* Flex-grow, flex-shrink, and flex-basis set for 5 items per row */
+        margin: 1%; /* Adds space around the cards */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 140px;
+        cursor: pointer;
+    }
+    </style>
+
+<style>
+    #Logo{
+        justify-content: center;
+    }
+
+    #projectDetailsCanvas {
+        height: 100%; /* Adjust the height as needed */
+    }
+    .btn-circle {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 60px; /* Adjust width and height as needed */
+        height: 60px; /* Adjust width and height as needed */
+        border-radius: 50%;
+        background-color: #333;
+        color: white;
+        border: none;
+    }
+
+    .btn-circle .fas {
+        font-size: 24px;
+    }
+
+    .selected-project {
+        background-color: #007bff;
+        color: white;
+    }
+    
+    .project-wrapper:hover {
+        background-color: #333; /* Change #333 to whatever color you prefer for hover */
+        cursor: pointer;
+    }
+    
+</style>

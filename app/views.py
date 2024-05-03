@@ -75,8 +75,10 @@ def project_detail_2(request, project_id):
 
 def translator_home(request):
     all_projects = Project.objects.all()
+    translator_activitys = Activity.objects.all()
     context = {
         'translator_projects': all_projects,
+        'translator_activitys': translator_activitys,
     }
     return render(request, 'translator_home.html', context)
 def chief_editor_home(request):
