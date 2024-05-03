@@ -165,6 +165,8 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
+                                    <p>{{ activity.task_info }}</p>
+                                    <p>{{ activity.deadline }}</p>
                                     {% if activity.status == "Satisfactory result" %}
                                         <form method="post" action="{% url 'update_activity_2' activity.id %}">
                                             {% csrf_token %}
@@ -272,6 +274,8 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
+                                    <p>{{ activity.task_info }}</p>
+                                    <p>{{ activity.deadline }}</p>
                                     {% if activity.status == "Satisfactory result" %}
                                         <form method="post" action="{% url 'update_activity_2' activity.id %}">
                                             {% csrf_token %}
@@ -379,6 +383,8 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
+                                    <p>{{ activity.task_info }}</p>
+                                    <p>{{ activity.deadline }}</p>
                                     {% if activity.status == "Satisfactory result" %}
                                         <form method="post" action="{% url 'update_activity_2' activity.id %}">
                                             {% csrf_token %}
