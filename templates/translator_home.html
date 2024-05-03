@@ -64,7 +64,7 @@
                 <div class="collapse" id="collapseExample">
                     <div class="card text-bg-dark mb-3 border-secondary mb-3 card-body">
                         {% for project in translator_projects %}
-                        <li class="nav-item mb-3" data-project-id="{{ project.id }}"
+                        <li class="nav-item mb-3" data-project-id="{{ project.id }}"  data-project-name="{{ project.project_name }}"
                             onmouseover="this.style.backgroundColor='#333'"
                             onmouseout="this.style.backgroundColor='transparent'">
                             <div class="d-flex justify-content-between align-items-center project-wrapper"
@@ -225,6 +225,21 @@
                     // Update the form action to include the activity ID
                     const form = modal.querySelector(`#editActivityForm${activityId}`);
                     form.action = `/update_activity/${activityId}`;
+                });
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const projectItems = document.querySelectorAll(".nav-item");
+            // Получаем элемент с id selectedProjectName
+            const selectedProjectName = document.getElementById("selectedProjectName");
+            projectItems.forEach(item => {
+                item.addEventListener("click", function () {
+                    // Получаем значение атрибута data-project-id выбранного элемента
+                    const projectId = "This is project: " + this.getAttribute("data-project-name");
+                    // Устанавливаем текстовое содержимое элемента с id selectedProjectName в значение project.id
+                    selectedProjectName.textContent = projectId;
                 });
             });
         });

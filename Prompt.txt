@@ -1,5 +1,39 @@
+                        <li class="nav-item mb-3" data-project-id="{{ project.id }}"
 
+        <div class="container mt-5 pt-5">
+            <h4 id="selectedProjectName" style="font-family: Jost">Select a project to filter activities</h4>
+        </div>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const projectItems = document.querySelectorAll(".nav-item");
+        const projectDetailsCanvas = new bootstrap.Offcanvas(document.getElementById('projectDetailsCanvas'));
+    
+        projectItems.forEach(item => {
+            item.addEventListener("click", function () {
+                // Remove selected-project class from all other items
+                projectItems.forEach(otherItem => {
+                    otherItem.classList.remove('selected-project');
+                });
+    
+                // Add selected-project class to the clicked item
+                this.classList.add('selected-project');
+    
+                const projectName = this.querySelector(".project-name").textContent;
+                // Update selected project display
+                document.getElementById("selectedProjectName").textContent = projectName;
+                // Update project details offcanvas
+                document.getElementById("projectDetailsLabel").textContent = projectName;
+
+    
+                // Show the project details offcanvas
+                projectDetailsCanvas.show();
+            });
+        });
+    });
+    
+    
+</script>
 
 
 ------------------ Миграция ------------------
