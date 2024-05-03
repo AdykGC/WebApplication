@@ -117,7 +117,7 @@ def update_activity(request, activity_id):
         # Сохраняем изменения в базе данных
         activity.save()
         # Перенаправляем пользователя обратно на страницу деталей проекта
-        return redirect(reverse('project_detail', kwargs={'project_id': project.id}))
+        return redirect(reverse('translator_home'))
     # Если запрос не метода POST, возвращаем HttpResponse с информацией о том, что метод не поддерживается
     return HttpResponse("Метод не поддерживается")
 

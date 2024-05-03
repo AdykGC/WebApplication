@@ -73,7 +73,8 @@
                                     {{ project.project_name }}
                                 </div>
                                 <button type="button" class="btn btn-link edit-btn" data-bs-toggle="modal"
-                                    data-bs-target="#editProjectModal{{ project.id }}"></button>
+                                    data-bs-target="#editProjectModal{{ project.id }}">
+                                </button>
                             </div>
                         </li>
                         {% endfor %}
@@ -104,12 +105,12 @@
     <article>
         <div class="container mt-5 pt-5">
             <h4 id="selectedProjectName" style="font-family: Jost">
-                Select a project to filter activities
+                Select a project to filter 
             </h4>
         </div>
         <div class="cards-container">
             {% for activity in translator_activitys %}
-            <button type="button" class="btn card border-dark mb-3" data-bs-toggle="modal" data-bs-target="#activityModal{{ activity.id }}" data-project-id="{{ activity.project_id }}" style="min-width: 22rem; padding: 0;" data-project-id="{{ activity.project_id }}">
+            <button type="button" class="btn card border-dark mb-3" data-bs-toggle="modal" data-bs-target="#activityModal{{ activity.id }}" data-project-id="{{ activity.project }}" style="min-width: 22rem; padding: 0;" data-project-id="{{ activity.project_id }}">
                 <!--  Header  -->
                 <div class="card-header bg-dark text-white">
                     {{ activity.name }}
@@ -162,46 +163,25 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <!-- Activity details form -->
-                            <form method="post" action="{% url 'update_activity' activity.id %}">
-                                <form id="editActivityForm{{ activity.id }}" method="post"
-                                    action="{% url 'update_activity' activity.id %}">
+                            {% if activity.status == "Satisfactory result" %}
+                                <p>Satisfactory result</p>
+                            {% else %}
+                                <form method="post" action="{% url 'update_activity' activity.id %}">
                                     {% csrf_token %}
                                     <div class="mb-3">
-                                        <label for="activityName{{ activity.id }}" class="form-label">Activity
-                                            Name</label>
-                                        <input type="text" class="form-control" id="activityName{{ activity.id }}"
-                                            name="activity_name" value="{{ activity.activity_name }}" />
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="translator{{ activity.id }}" class="form-label">Translator</label>
-                                        <select class="form-select" id="translator{{ activity.id }}" name="translator">
-                                            {% for translator in translators %}
-                                            <option value="{{ translator.username }}">
-                                                {{ translator.username }}
-                                            </option>
-                                            {% endfor %}
+                                        <label class="form-label">Progress</label>
+                                        <select class="form-select" name="status" id="status">
+                                            <option value="0">0%</option>
+                                            <option value="33">33%</option>
+                                            <option value="66">66%</option>
+                                            <option value="100">100%</option>
                                         </select>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="project{{ activity.id }}" class="form-label">Project</label>
-                                        <select class="form-select" id="project{{ activity.id }}" name="project_id">
-                                            {% for project in projects %}
-                                            <option value="{{ project.id }}">
-                                                {{ project.project_name }}
-                                            </option>
-                                            {% endfor %}
-                                        </select>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="deadline{{ activity.id }}" class="form-label">Deadline</label>
-                                        <input type="date" class="form-control" id="deadline{{ activity.id }}"
-                                            name="deadline" value="{{ activity.deadline }}" />
                                     </div>
                                     <button type="submit" class="btn btn-primary">
                                         Save Changes
                                     </button>
                                 </form>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -209,39 +189,6 @@
             {% endfor %}
         </div>
     </article>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const projectItems = document.querySelectorAll(".nav-item");
-            const projectDetailsCanvas = new bootstrap.Offcanvas(
-                document.getElementById("projectDetailsCanvas")
-            );
-            projectItems.forEach((item) => {
-                item.addEventListener("click", function () {
-                    // Remove selected-project class from all other items
-                    projectItems.forEach((otherItem) => {
-                        otherItem.classList.remove("selected-project");
-                    });
-                    // Add selected-project class to the clicked item
-                    this.classList.add("selected-project");
-                    const projectName = this.querySelector(".project-name").textContent;
-                    const projectDeadline = this.getAttribute("data-project-deadline");
-                    const projectStatus = this.getAttribute("data-project-status");
-                    // Update selected project display
-                    document.getElementById("selectedProjectName").textContent =
-                        projectName;
-                    // Update project details offcanvas
-                    document.getElementById("projectDetailsLabel").textContent =
-                        projectName;
-                    document.getElementById("projectDeadline").textContent =
-                        "Deadline: " + projectDeadline;
-                    document.getElementById("projectStatus").textContent =
-                        "Status: " + projectStatus;
-                    // Show the project details offcanvas
-                    projectDetailsCanvas.show();
-                });
-            });
-        });
-    </script>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -268,7 +215,6 @@
             });
         });
     </script>
-
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const activityModals = document.querySelectorAll(".modal");
