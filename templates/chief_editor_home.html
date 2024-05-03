@@ -1,99 +1,234 @@
 {% load static %}
-<!DOCTYPE HTML>
-<HTML lang="en">
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Подключаем CSS файл Bootstrap -->
-    <link href="{% static 'node_modules/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet"> 
-    <link href="{% static 'Need-File/New_Css.CSS' %}" rel="stylesheet">
-    <link href= "{% static 'IMG/Need-File-CSS.CSS' %}" rel="stylesheet">
+    <link href="{% static 'node_modules/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'Need-File/New_Css.css' %}" rel="stylesheet" />
+    <!--link href="{% static 'IMG/Need-File-CSS.CSS' %}" rel="stylesheet" /-->
     <!-- Подключаем Google Fonts и Icons-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet" />
     <!-- Подключаем файлы JavaScript для некоторых компонентов и интерактивности -->
     <script src="{% static 'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
 
     <title>Chief Editor</title>
 </head>
+
 <body>
     <!-- Фиксированный навигационный бар -->
-    <nav class="navbar navbar-dark bg-dark fixed-top">
-        <!-- Контейнер с полным охватом -->
+    <header class="navbar navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
-            <!-- Ссылочное лого -->
-            <a class="navbar-brand" href="#">
-                <img src="{% static 'IMG/error.jpg' %}" alt="Logo" width="40" height="30" class="d-inline-block align-text-top">
-                Four-Zero-Four
-            </a>
-            <!-- Кнопка для открытия модального окна -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            <a class="navbar-brand" href="">
+                <!-- LINK -->
+                <img src="{% static 'IMG/Atom_icon.png' %}" id="Logo" alt="Logo" width="95" height="20"
+                    class="d-inline-block" style="margin-bottom: 7px" />
+            </a>
         </div>
-    </nav>
-
-    <!-- Ссылочное меню ссылочной кнопки-->
-    <div class="offcanvas offcanvas-end text-bg-dark" data-bs-scroll="true" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+    </header>
+    <aside class="offcanvas offcanvas-start text-bg-dark" data-bs-scroll="true" tabindex="-1" id="offcanvasDarkNavbar"
+        aria-labelledby="offcanvasDarkNavbarLabel">
         <!-- Head меню -->
         <div class="offcanvas-header">
-            <p class="offcanvas-title P-Size-1 Google-Font-Oswald" id="offcanvasDarkNavbarLabel">Four-Zero-Four</p>
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <a class="navbar-brand" href="">
+                <!-- LINK -->
+                <img src="{% static 'IMG/Atom_icon.png' %}" id="Logo" alt="Logo" width="95" height="20"
+                    class="d-inline-block" style="margin-left: 7px" />
+            </a>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                aria-label="Close"></button>
         </div>
-        <!-- Body меню -->
-        <div class="offcanvas-body">
+        <!-- Main меню -->
+        <nav class="offcanvas-body">
+            <!-- Project List -->
             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                <!-- Project 1 -->
-                {% for project in chief_editor_projects %}
-                <li class="nav-item mb-3" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='transparent'">
-                    <a href="{% url 'project_detail_2' project.id %}" style="text-decoration: none; color: inherit;">
-                        <div class="d-flex justify-content-between align-items-center project-wrapper" style="padding: 10px;">
-                            <div class="project-name" style="margin-right: 10px;">{{project.project_name}}</div>
-                        </div>
-                    </a>
-                </li>
-                {% endfor %}
+                <p class="d-inline-flex gap-1">
+                    <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"
+                        style="font-family: Roboto">
+                        My Projects
+                    </button>
+                </p>
+                <div class="collapse" id="collapseExample">
+                    <div class="card text-bg-dark mb-3 border-secondary mb-3 card-body">
+                        {% for project in chief_editor_projects %}
+                        <li class="nav-item mb-3" data-project-id="{{ project.id }}"
+                            onmouseover="this.style.backgroundColor='#333'"
+                            onmouseout="this.style.backgroundColor='transparent'">
+                            <div class="d-flex justify-content-between align-items-center project-wrapper"
+                                style="padding: 10px">
+                                <div class="project-name" style="margin-right: 10px; font-family: Roboto">
+                                    {{ project.project_name }}
+                                </div>
+                                <button type="button" class="btn btn-link edit-btn" data-bs-toggle="modal"
+                                    data-bs-target="#editProjectModal{{ project.id }}">
+                                </button>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </div>
+                </div>
             </ul>
-        </div>
-        <!-- Bottom Box -->
-        <div class="offcanvas-bottom-box" style="padding: 10px; background-color: #212529; color: white;">
-            <!-- Notif -->
-            <div class="Notification">
-                <ul class="nav-item dropdown navbar-nav justify-content-end flex-grow-1 pe-3">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Notification
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-dark">
-                            {% for activity in project.activities.all %}
-                                {% if activity.status == "100" %}
-                                <li>
-                                    <a class="dropdown-item" href="{% url 'project_detail_2' activity.project.id %}" style="text-decoration: none; color: inherit; width: 100%;">
-                                        <p>Project: {{ activity.project.id }} <br> Activity: {{ activity.name }} <br> Status: Ready to check</p>
-                                    </a>
-                                </li>
-                                {% else %}
-                                {% endif %}
-                            {% endfor %}
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <br>
+        </nav>
+        <!-- Footer меню -->
+        <div class="offcanvas-bottom-box" style="padding: 10px; background-color: #212529; color: white">
             <div class="d-flex align-items-center">
                 <!-- User Icon -->
-                <div class="user-icon" style="margin-right: 10px;">
-                    <img src="{% static 'IMG/error.jpg' %}" alt="User Icon" width="50" height="50" style="border-radius: 50%;">
+                <div class="user-icon" style="margin-right: 10px">
+                    <img src="{% static 'IMG/Atom_user_icon.png' %}" alt="User Icon" width="50" height="50"
+                        style="border-radius: 50%" />
                 </div>
                 <!-- User Name and Role -->
                 <div class="user-info">
-                    <div class="user-name">{{ request.user.username }}</div>
-                    <div class="user-role">{{ request.user.user_type }}</div>
+                    <div class="user-name" style="font-family: Roboto">
+                        {{ request.user.username }}
+                    </div>
+                    <div class="user-role" style="font-family: Roboto">
+                        {{ request.user.user_type }}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </aside>
+    <article>
+        <div class="container mt-5 pt-5">
+            <h4 id="selectedProjectName" style="font-family: Jost">
+                Select a project to filter 
+            </h4>
+        </div>
+        <div class="cards-container">
+            {% for activity in chief_editor_activitys %}
+            <button type="button" class="btn card border-dark mb-3" data-bs-toggle="modal" data-bs-target="#activityModal{{ activity.id }}" data-project-id="{{ activity.project.id }}" style="min-width: 22rem; padding: 0;">
+                <!--  Header  -->
+                <div class="card-header bg-dark text-white">
+                    {{ activity.name }}
+                </div>
+                <!--  Body  -->
+                <div class="card-body">
+                    <p class="card-text">{{ activity.task_info }}</p>
+                    <p class="card-date">{{ activity.deadline }}</p>
+                    <div class="progress Google-Font-Oswald">
+                        {% if activity.status == "Unsatisfactory result" %}
+                        <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" aria-label="Danger striped example" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                            {{ activity.status }}
+                        </div>
+                        {% elif activity.status == "Satisfactory result" %}
+                        <div class="progress-bar progress-bar-striped bg-success" role="progressbar" aria-label="Success striped example" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                            {{ activity.status }}
+                        </div>
+                        {% else %}
+                            {% if activity.status == "0" %}
+                            <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" aria-label="Warning striped example" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                
+                            </div>
+                            {% elif activity.status == "33" %}
+                            <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" aria-label="Warning striped example" style="width: 33%" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100">
+                                
+                            </div>
+                            {% elif activity.status == "66" %}
+                            <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" aria-label="Warning striped example" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100">
+                                
+                            </div>
+                            {% elif activity.status == "100" %}
+                            <div class="progress-bar progress-bar-striped" role="progressbar" aria-label="Warning striped example" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                Ready to check
+                            </div>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+            </button>
+
+            <!-- Activity Modal -->
+            <div class="modal fade" id="activityModal{{ activity.id }}" tabindex="-1"
+                aria-labelledby="activityModalLabel{{ activity.id }}" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="activityModalLabel{{ activity.id }}">
+                                {{ activity.name }}
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            {% if activity.status == "Satisfactory result" %}
+                                <p>Satisfactory result</p>
+                            {% else %}
+                                <form method="post" action="{% url 'update_activity_2' activity.id %}">
+                                    {% csrf_token %}
+                                    <div class="mb-3">
+                                        <label class="form-label">Progress</label>
+                                        <select class="form-select" name="status" id="status">
+                                            <option value="0">0%</option>
+                                            <option value="33">33%</option>
+                                            <option value="66">66%</option>
+                                            <option value="100">100%</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">
+                                        Save Changes
+                                    </button>
+                                </form>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </article>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Select all project items and activity cards
+            const projectItems = document.querySelectorAll(".nav-item");
+            const activityCards = document.querySelectorAll(
+                ".cards-container .card"
+            );
+            // Attach event listeners to each project item
+            projectItems.forEach((item) => {
+                item.addEventListener("click", function (event) {
+                    event.preventDefault(); // Prevent default action (e.g., anchor click)
+                    // Retrieve the project ID from the clicked item
+                    const projectId = this.getAttribute("data-project-id");
+                    // Filter activity cards based on the project ID
+                    activityCards.forEach((card) => {
+                        if (card.getAttribute("data-project-id") === projectId) {
+                            card.style.display = "flex"; // Show card if IDs match
+                        } else {
+                            card.style.display = "none"; // Otherwise, hide card
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const activityModals = document.querySelectorAll(".modal");
+            activityModals.forEach((modal) => {
+                modal.addEventListener("show.bs.modal", function (event) {
+                    const button = event.relatedTarget;
+                    const activityId = button.getAttribute("data-activity-id");
+                    // Update the form action to include the activity ID
+                    const form = modal.querySelector(`#editActivityForm${activityId}`);
+                    form.action = `/update_activity/${activityId}`;
+                });
+            });
+        });
+    </script>
 </body>
+
 </html>
