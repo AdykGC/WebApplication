@@ -1,19 +1,4 @@
-{% for activity in translator_activitys %}
-
-создать элемент с этим значением первыми
-{% if activity.status == "Unsatisfactory result" %}
-create
-
-создать элемент с этим значением вторыми
-{% elif activity.status == "Satisfactory result" %}
-create
-
-создать элемент с этим значением последними
-{% else %}
-create
-{% endif %}
-
-{% endfor %}
+Сокращенные команды для быстрого взаимодействие
 
 ------------------ Миграция ------------------
 python3 manage.py makemigrations
