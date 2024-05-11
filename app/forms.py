@@ -7,6 +7,8 @@ from .models import CustomUser
 import re
 from django import forms
 from .models import Project, Activity
+from .models import PM_Project, PM_Activity
+
 
 class UserRegistrationForm(UserCreationForm):
     USER_TYPE_CHOICES = [
@@ -80,3 +82,19 @@ class ActivityForm(forms.ModelForm):
     class Meta:
         model = Activity
         fields = ['percent_complete']
+
+
+
+
+#/////////////////////////////////////////////////////////////////////////////////////////////////////
+# ERROR-1 Rename this fucking shit
+#/////////////////////////////////////////////////////////////////////////////////////////////////////
+class PM_ProjectForm(forms.ModelForm):
+    class Meta:
+        model = PM_Project
+        fields = ['project_name', 'deadline']
+
+class PM_ActivityForm(forms.ModelForm):
+    class Meta:
+        model = PM_Activity
+        fields = ['activity_name', 'translator','project','deadline']
