@@ -97,4 +97,4 @@ class PM_ProjectForm(forms.ModelForm):
 class PM_ActivityForm(forms.ModelForm):
     class Meta:
         model = PM_Activity
-        fields = ['activity_name', 'translator','project','deadline']
+        fields = ['activity_name','task_info','translator','project','deadline']

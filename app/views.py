@@ -149,6 +149,7 @@ def PM_update_activity(request, activity_id):
     if request.method == 'POST':
         activity = get_object_or_404(PM_Activity, pk=activity_id)
         activity.activity_name = request.POST.get('activity_name', activity.activity_name)
+        activity.task_info = request.POST.get('task_info', activity.task_info)
         activity.translator = request.POST.get('translator', activity.translator)
         activity.project_id = request.POST.get('project_id', activity.project_id)
         activity.deadline = request.POST.get('deadline', activity.deadline)

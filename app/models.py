@@ -60,6 +60,7 @@ class PM_Project(models.Model):
 class PM_Activity(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     activity_name = models.CharField(max_length=255)
+    task_info = models.CharField(max_length=255, default="Change all letter to upper case in the beginning of the sentences if needed")
     translator = models.CharField(max_length=255)
     deadline = models.DateField()
     remaining_text_volume = models.CharField(max_length=100, default="0%")
