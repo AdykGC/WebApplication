@@ -234,6 +234,10 @@
                                         <input type="text" class="form-control" id="activityName{{ PM_activity.id }}" name="activity_name" value="{{ PM_activity.activity_name }}">
                                     </div>
                                     <div class="mb-3">
+                                        <label for="activityTask{{ PM_activity.id }}" class="form-label">Task</label>
+                                        <input type="text" class="form-control" id="activityTask{{ PM_activity.id }}" name="task_info" value="{{ PM_activity.task_info }}">
+                                    </div>
+                                    <div class="mb-3">
                                         <label for="translator{{ PM_activity.id }}" class="form-label">Translator</label>
                                         <select class="form-select" id="translator{{ PM_activity.id }}" name="translator">
                                             {% for translator in translators %}
