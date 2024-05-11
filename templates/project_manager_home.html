@@ -48,6 +48,51 @@
             </div>
             <p class="card-text" style="font-family: Roboto; text-align: center;">Create New Activity</p>
         </div>
+        <div class="modal fade" id="createActivityModal" tabindex="-1" aria-labelledby="createProjectModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="projectManagerOffcanvasLabel" style="font-family: Roboto">Create Activity</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <!-- Modal Body -->
+                    <div class="modal-body">
+                        <form method="post" action="{% url 'project_manager_check' %}">
+                            {% csrf_token %}
+                            <!-- Project Name Input -->
+                            <div class="mb-3">
+                                <label for="activityName" class="form-label" style="font-family: Roboto">Activity Name</label>
+                                <input type="text" class="form-control" id="activityName" name="activity_name" style="font-family: Roboto">
+                            </div>
+                            <div class="mb-3">
+                                <label for="translator" class="form-label">Select Translator</label>
+                                <select class="form-select" id="translator" name="translator">
+                                    {% for translator in translators %}
+                                        <option value="{{ translator.username }}">{{ translator.username }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <!-- Project Selection Dropdown -->
+                            <div class="mb-3">
+                                <label for="project" class="form-label" style="font-family: Roboto">Select Project</label>
+                                <select class="form-select" id="project" name="project">
+                                    {% for PM_project in projects %}
+                                        <option value="{{ PM_project.id }}">{{ PM_project.project_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <!-- Deadline Input -->
+                            <div class="mb-3">
+                                <label for="deadline" class="form-label" style="font-family: Roboto">Deadline</label>
+                                <input type="date" class="form-control" id="deadline" name="deadline" style="font-family: Roboto">
+                            </div>
+                            <!-- Submit Button -->
+                            <button type="submit" class="btn btn-primary" style="font-family: Roboto">Create Activity</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     
         <!-- Other Cards -->
         {% for PM_activity in activities %}
@@ -265,51 +310,6 @@
 
 
 
-    <div class="modal fade" id="createActivityModal" tabindex="-1" aria-labelledby="createProjectModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="projectManagerOffcanvasLabel" style="font-family: Roboto">Create Activity</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <!-- Modal Body -->
-                <div class="modal-body">
-                    <form method="post" action="{% url 'project_manager_check' %}">
-                        {% csrf_token %}
-                        <!-- Project Name Input -->
-                        <div class="mb-3">
-                            <label for="activityName" class="form-label" style="font-family: Roboto">Activity Name</label>
-                            <input type="text" class="form-control" id="activityName" name="activity_name" style="font-family: Roboto">
-                        </div>
-                        <div class="mb-3">
-                            <label for="translator" class="form-label">Select Translator</label>
-                            <select class="form-select" id="translator" name="translator">
-                                {% for translator in translators %}
-                                    <option value="{{ translator.username }}">{{ translator.username }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                        <!-- Project Selection Dropdown -->
-                        <div class="mb-3">
-                            <label for="project" class="form-label" style="font-family: Roboto">Select Project</label>
-                            <select class="form-select" id="project" name="project">
-                                {% for PM_project in projects %}
-                                    <option value="{{ PM_project.id }}">{{ PM_project.project_name }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                        <!-- Deadline Input -->
-                        <div class="mb-3">
-                            <label for="deadline" class="form-label" style="font-family: Roboto">Deadline</label>
-                            <input type="date" class="form-control" id="deadline" name="deadline" style="font-family: Roboto">
-                        </div>
-                        <!-- Submit Button -->
-                        <button type="submit" class="btn btn-primary" style="font-family: Roboto">Create Activity</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
     
     <script>
         document.addEventListener("DOMContentLoaded", function () {
