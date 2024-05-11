@@ -14,25 +14,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
-    <title>GIT GUD</title>
+    <title>Project Manager</title>
 </head>
 <body>
-    
     <!-- Фиксированный навигационный бар -->
-    <nav class="navbar navbar-dark bg-dark fixed-top">      
-        <!-- Контейнер с полным охватом -->
+    <header class="navbar navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
-            <!-- Кнопка для открытия модального окна -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <!-- Ссылочное лого -->
-            <a class="navbar-brand" href="/project-manager">
-                <img src="{% static 'IMG/Atom_icon.png' %}" id="Logo" alt="Logo" width="95" height="20" class="d-inline-block" style="margin-bottom: 7px">
+            <a class="navbar-brand" href="">
+                <!-- LINK -->
+                <img src="{% static 'IMG/Atom_icon.png' %}" id="Logo" alt="Logo" width="95" height="20"
+                    class="d-inline-block" style="margin-bottom: 7px" />
             </a>
-            
         </div>
-    </nav>
+    </header>
 
     <div class="container mt-5 pt-5">
         <h4 id="selectedProjectName" style="font-family: Jost"><a class="navbar-brand" href="/project-manager">
