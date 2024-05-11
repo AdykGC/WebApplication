@@ -51,6 +51,7 @@
     
         <!-- Other Cards -->
         {% for PM_activity in activities %}
+            <!-- Activity Cards -->
             <div class="card border-dark mb-3" style="max-width: 18rem;" data-project-id="{{ PM_activity.project_id }}">
                 <div class="card-header {% if PM_activity.status == 'Completed' %}bg-success{% else %}bg-dark{% endif %} text-white">
                     {% if PM_activity.status == "Not Completed" %}
@@ -64,7 +65,8 @@
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#activityModal{{ PM_activity.id }}" data-project-id="{{ PM_activity.project_id }}">View Details</button>
                 </div>
             </div>
-            <!-- Activity Modal -->
+
+            <!-- Activity Cards Modal -->
             <div class="modal fade" id="activityModal{{ PM_activity.id }}" tabindex="-1" aria-labelledby="activityModalLabel{{ PM_activity.id }}" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -292,7 +294,7 @@
                             <label for="project" class="form-label" style="font-family: Roboto">Select Project</label>
                             <select class="form-select" id="project" name="project">
                                 {% for PM_project in projects %}
-                                    <option value="{{ project.id }}">{{ PM_project.project_name }}</option>
+                                    <option value="{{ PM_project.id }}">{{ PM_project.project_name }}</option>
                                 {% endfor %}
                             </select>
                         </div>

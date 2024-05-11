@@ -18,6 +18,6 @@ urlpatterns = [
 # Managers main pages
     path("project-manager/", views.project_manager, name='project_manager_home'),
     path('project/update/<int:project_id>/', views.update_project, name='update_project'),
-    path("project-manager-check/", views.create_activity, name='project_manager_check'),
+    path("project_manager_check/", views.create_activity, name='project_manager_check'),
     path('PM_update_activity/<int:activity_id>/', views.PM_update_activity, name='PM_update_activity'),
 ]
