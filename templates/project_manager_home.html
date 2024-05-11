@@ -5,14 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Подключаем CSS файл Bootstrap -->
-    <link href="{% static 'node_modules/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet"> 
+    <link href="{% static 'node_modules/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'Need-File/New_Css.css' %}" rel="stylesheet" />
+    <!--link href="{% static 'IMG/Need-File-CSS.CSS' %}" rel="stylesheet" /-->
+    <!-- Подключаем Google Fonts и Icons-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet" />
     <!-- Подключаем файлы JavaScript для некоторых компонентов и интерактивности -->
     <script src="{% static 'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
 
     <title>Project Manager</title>
 </head>
@@ -108,15 +113,17 @@
                 <img src="{% static 'IMG/Atom_Logo_Nav.png' %}" id="Logo" alt="Logo" width="95" height="20" class="d-inline-block" style="margin-bottom: 7px">
             </a> - All projects</h4>
         </div>
-        
         <div class="cards-container">
-            <!-- Create Activity Card -->
-            <div class="card text-bg-dark d-flex justify-content-center align-items-center" style="max-width: 17.3rem; flex: 0 0 18%; margin: 1%;" data-bs-toggle="modal" data-bs-target="#createActivityModal">
-                <div class="btn btn-primary btn-circle btn-lg" style="border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                    <i class="fas fa-plus"></i>
+            <!-- Create Card -->
+            <button type="button" class="btn card border-dark mb-3" style="display: flex; align-items: center;" data-bs-toggle="modal" data-bs-target="#createActivityModal" style="min-width: 22rem; padding: 0;">
+                <!--  Body  -->
+                <div class="card-body" style="justify-content: center">
+                    <div class="btn btn-primary btn-circle btn-lg" style=" width: 100%; border-radius: 5%; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-plus"></i>
+                    </div>
                 </div>
-                <p class="card-text" style="font-family: Roboto; text-align: center;">Create New Activity</p>
-            </div>
+            </button>
+            <!-- Create Card Modal -->
             <div class="modal fade" id="createActivityModal" tabindex="-1" aria-labelledby="createProjectModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -162,24 +169,50 @@
                     </div>
                 </div>
             </div>
-        
-            <!-- Other Cards -->
             {% for PM_activity in activities %}
                 <!-- Activity Cards -->
-                <div class="card border-dark mb-3" style="max-width: 18rem;" data-project-id="{{ PM_activity.project_id }}">
-                    <div class="card-header {% if PM_activity.status == 'Completed' %}bg-success{% else %}bg-dark{% endif %} text-white">
-                        {% if PM_activity.status == "Not Completed" %}
-                            <img src="{% static 'IMG/not_completed.png' %}" alt="Not Completed Icon" style="width: 20px; height: auto; margin-right: 5px;">
-                        {% endif %}
-                        {{ PM_activity.status }}
+                <button type="button" class="btn card border-dark mb-3" data-bs-toggle="modal" data-bs-target="#activityModal{{ PM_activity.id }}" data-project-id="{{ PM_activity.project_id }}" style="min-width: 22rem; padding: 0;">
+                    <!--  Header  -->
+                    <div class="card-header bg-dark text-white">
+                        {{ PM_activity.activity_name }}
                     </div>
+                    <!--  Body  -->
                     <div class="card-body">
-                        <h5 class="card-title">{{ PM_activity.activity_name }}</h5>
-                        <p class="card-text">Deadline: {{ PM_activity.deadline }}</p>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#activityModal{{ PM_activity.id }}" data-project-id="{{ PM_activity.project_id }}">View Details</button>
+                        <p class="card-text">ТАСКА нету</p>
+                        <p class="card-date">{{ PM_activity.deadline }}</p>
+                        <div class="progress Google-Font-Oswald">
+                            {% if PM_activity.status == "Unsatisfactory result" %}
+                                <div class="progress-bar progress-bar-Bad" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                    {{ activity.status }}
+                                </div>
+                            {% elif PM_activity.status == "Satisfactory result" %}
+                                <div class="progress-bar progress-bar-Good" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                    {{ activity.status }}
+                                </div>
+                            {% elif PM_activity.status == "100" %}
+                                <div class="progress-bar progress-bar-100" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                    Ready to check
+                                </div>
+                            {% elif PM_activity.status == "0" %}
+                                <div class="progress-bar progress-bar-0" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                    
+                                </div>
+                            {% elif PM_activity.status == "33" %}
+                                <div class="progress-bar progress-bar-33" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                    
+                                </div>
+                            {% elif PM_activity.status == "66" %}
+                                <div class="progress-bar progress-bar-66" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                    
+                                </div>
+                            {% else %}
+                                <div class="progress-bar progress-bar-0" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                    
+                                </div>
+                            {% endif %}
+                        </div>
                     </div>
-                </div>
-    
+                </button>
                 <!-- Activity Cards Modal -->
                 <div class="modal fade" id="activityModal{{ PM_activity.id }}" tabindex="-1" aria-labelledby="activityModalLabel{{ PM_activity.id }}" aria-hidden="true">
                     <div class="modal-dialog">
@@ -223,24 +256,13 @@
                     </div>
                 </div>
             {% endfor %}
-            <!-- Repeat similar blocks for other cards -->
         </div>
-        
-       
-        <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="projectDetailsCanvas" aria-labelledby="projectDetailsLabel" style="left: 21%">
-            <div class="offcanvas-header">
-                <h5 id="projectDetailsLabel" class="offcanvas-title" style="font-family: Roboto">Project Details</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            
-            <div class="offcanvas-body">
-                <p id="projectDeadline" style="font-family: Roboto">Deadline: {{ project.deadline }}</p>
-                <p id="projectStatus" style="font-family: Roboto">Status: {{ project.status }}</p>
-            </div>
-            
-        </div>
-        
-    
+
+
+
+
+
+
     <!-- --------------------------------------- -->
     <!-- Error-1 : If data = null but thats work -->
     <!-- --------------------------------------- -->
