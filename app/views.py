@@ -58,16 +58,16 @@ def handleregistration(request):
 
 
 def translator_home(request):
-    all_projects = Project.objects.all()
-    translator_activitys = Activity.objects.all()
+    all_projects = PM_Project.objects.all().order_by('-created_at')
+    translator_activitys = PM_Activity.objects.all().order_by('-created_at')
     context = {
         'translator_projects': all_projects,
         'translator_activitys': translator_activitys,
     }
     return render(request, 'translator_home.html', context)
 def chief_editor_home(request):
-    all_projects = Project.objects.all()
-    chief_editor_activitys = Activity.objects.all()
+    all_projects = PM_Project.objects.all().order_by('-created_at')
+    chief_editor_activitys = PM_Activity.objects.all().order_by('-created_at')
     context = {
         'chief_editor_projects': all_projects,
         'chief_editor_activitys': chief_editor_activitys,
@@ -130,51 +130,6 @@ def project_manager(request):
         'activities': activities  # Pass sorted activities to the template context
     }
     return render(request, 'project_manager_home.html', context)
-
-
-
-def chief_editor_manager(request):
-    projects = PM_Project.objects.all().order_by('-created_at')  # Retrieve all projects sorted by creation time
-    user = request.user  # Get the current user
-    translators = CustomUser.objects.filter(user_type='translator')
-    activities = PM_Activity.objects.all().order_by('-created_at')  # Retrieve all activities sorted by creation time
-
-    if request.method == 'POST':
-        form = PM_ProjectForm(request.POST)
-        if form.is_valid():
-            # Save the project with the current user as the selected_translator
-            project = form.save(commit=False)
-            project.save()
-            return redirect('chief_editor_home')  # Redirect after successful form submission
-    else:
-        form = PM_ProjectForm()
-
-    context = {
-        'projects': projects,
-        'user': user,
-        'form': form,
-        'translators': translators,
-        'activities': activities
-    }
-    return render(request, 'chief_editor_home.html', context)
-
-
-
-def translator_manager(request):
-    TR_projects = PM_Project.objects.all().order_by('-created_at')  # Retrieve all projects sorted by creation time
-    TR_user = request.user  # Get the current user
-    TR_translators = CustomUser.objects.filter(user_type='translator')
-    TR_activities = PM_Activity.objects.all().order_by('-created_at')  # Retrieve all activities sorted by creation time
-
-    context = {
-        'TR_projects': TR_projects,
-        'TR_user': TR_user,
-        'TR_form': form,
-        'TR_translators': TR_translators,
-        'TR_activities': TR_activities
-    }
-    return render(request, 'translator_home.html', context)
-
 
 
 
