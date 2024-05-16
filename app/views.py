@@ -62,24 +62,7 @@ def handleregistration(request):
 
 
 
-def update_activity(request, activity_id):
-    activity = Activity.objects.get(id=activity_id)
-    project = activity.project
-    if request.method == 'POST':
-        new_status = request.POST.get('status')
-        activity.status = new_status
-        activity.save()
-        return redirect(reverse('translator_home'))
-    return HttpResponse("Метод не поддерживается")
-def update_activity_2(request, activity_id):
-    activity = Activity.objects.get(id=activity_id)
-    project = activity.project
-    if request.method == 'POST':
-        new_status = request.POST.get('status')
-        activity.status = new_status
-        activity.save()
-        return redirect(reverse('chief_editor_home'))
-    return HttpResponse("Метод не поддерживается")
+
 
 
 
@@ -117,6 +100,7 @@ def project_manager(request):
     return render(request, 'project_manager_home.html', context)
 
 
+
 def translator_home(request):
     all_projects = PM_Project.objects.all().order_by('-created_at')
     translator_activitys = PM_Activity.objects.all().order_by('-created_at')
@@ -136,6 +120,27 @@ def chief_editor_home(request):
 
 
 
+#//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#////////////////////////////////////////////////////////////////////////////////////////      User's Update      /////////////////////////////////////////////////////////////////////////////////////////
+#//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+def update_activity(request, activity_id):
+    activity = PM_Activity.objects.get(id=activity_id)
+    project = PM_Activity.project
+    if request.method == 'POST':
+        new_status = request.POST.get('status')
+        activity.remaining_text_volume = new_status
+        activity.save()
+        return redirect(reverse('translator_home'))
+    return HttpResponse("Метод не поддерживается")
+def update_activity_2(request, activity_id):
+    activity = PM_Activity.objects.get(id=activity_id)
+    project = PM_Activity.project
+    if request.method == 'POST':
+        new_status = request.POST.get('status')
+        activity.remaining_text_volume = new_status
+        activity.save()
+        return redirect(reverse('chief_editor_home'))
+    return HttpResponse("Метод не поддерживается")
 
 
 
