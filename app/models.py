@@ -52,7 +52,7 @@ class PM_Project(models.Model):
     deadline = models.DateField()
     status = models.CharField(max_length=20, default='Not completed', editable=False)
     created_at = models.DateTimeField(auto_now_add=True)
-
+    activity = models.ForeignKey('PM_Activity', on_delete=models.CASCADE, related_name="activities")
     def __str__(self):
         return self.project_name
 
