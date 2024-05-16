@@ -157,7 +157,7 @@
                                 <div class="modal-body">
                                     <p>{{ activity.task_info }}</p>
                                     <p>{{ activity.project.project_name }} : {{ activity.deadline }}</p>
-                                    {% if activity.status == "Satisfactory result" %}
+                                    {% if activity.remaining_text_volume == "Satisfactory result" %}
                                         <form method="post" action="{% url 'update_activity_2' activity.id %}">
                                             {% csrf_token %}
                                             <div class="mb-3">
@@ -171,7 +171,7 @@
                                                 Save Changes
                                             </button>
                                         </form>
-                                    {% elif activity.status == "Unsatisfactory result" %}
+                                    {% elif activity.remaining_text_volume == "Unsatisfactory result" %}
                                         <form method="post" action="{% url 'update_activity_2' activity.id %}">
                                             {% csrf_token %}
                                             <div class="mb-3">
@@ -185,7 +185,7 @@
                                                 Save Changes
                                             </button>
                                     </form>
-                                    {% elif activity.status == "100" %}
+                                    {% elif activity.remaining_text_volume == "100" %}
                                         <form method="post" action="{% url 'update_activity_2' activity.id %}">
                                             {% csrf_token %}
                                             <div class="mb-3">

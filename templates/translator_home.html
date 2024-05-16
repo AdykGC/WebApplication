@@ -157,7 +157,7 @@
                             <div class="modal-body">
                                 <p>{{ activity.task_info }}</p>
                                 <p>{{ activity.project.project_name }} : {{ activity.deadline }}</p>
-                                {% if activity.status == "Satisfactory result" %}
+                                {% if activity.remaining_text_volume == "Satisfactory result" %}
                                     <p>Satisfactory result</p>
                                 {% else %}
                                     <form method="post" action="{% url 'update_activity' activity.id %}">
