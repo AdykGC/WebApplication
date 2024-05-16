@@ -57,22 +57,7 @@ def handleregistration(request):
 
 
 
-def translator_home(request):
-    all_projects = PM_Project.objects.all().order_by('-created_at')
-    translator_activitys = PM_Activity.objects.all().order_by('-created_at')
-    context = {
-        'translator_projects': all_projects,
-        'translator_activitys': translator_activitys,
-    }
-    return render(request, 'translator_home.html', context)
-def chief_editor_home(request):
-    all_projects = PM_Project.objects.all().order_by('-created_at')
-    chief_editor_activitys = PM_Activity.objects.all().order_by('-created_at')
-    context = {
-        'chief_editor_projects': all_projects,
-        'chief_editor_activitys': chief_editor_activitys,
-    }
-    return render(request, 'chief_editor_home.html', context)
+
 
 
 
@@ -132,7 +117,22 @@ def project_manager(request):
     return render(request, 'project_manager_home.html', context)
 
 
-
+def translator_home(request):
+    all_projects = PM_Project.objects.all().order_by('-created_at')
+    translator_activitys = PM_Activity.objects.all().order_by('-created_at')
+    context = {
+        'translator_projects': all_projects,
+        'translator_activitys': translator_activitys,
+    }
+    return render(request, 'translator_home.html', context)
+def chief_editor_home(request):
+    all_projects = PM_Project.objects.all().order_by('-created_at')
+    chief_editor_activitys = PM_Activity.objects.all().order_by('-created_at')
+    context = {
+        'chief_editor_projects': all_projects,
+        'chief_editor_activitys': chief_editor_activitys,
+    }
+    return render(request, 'chief_editor_home.html', context)
 
 
 

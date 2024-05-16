@@ -98,9 +98,12 @@
     </aside>
     <article>
         <div class="container mt-5 pt-5">
-            <h4 id="selectedProjectName" style="font-family: Jost"><a class="navbar-brand" href="/project-manager">
-                <img src="{% static 'IMG/Atom_Logo_Nav.png' %}" id="Logo" alt="Logo" width="95" height="20" class="d-inline-block" style="margin-bottom: 7px">
-            </a> - All projects</h4>
+            <h6 id="selectedProjectName" style="font-family: Jost; cursor: pointer;">
+                <a class="navbar-brand" href="/project-manager">
+                    <img src="{% static 'IMG/Atom_Logo_Nav.png' %}" id="Logo" alt="Logo" width="95" height="20" class="d-inline-block" style="margin-bottom: 7px">
+                    - All projects
+                </a>
+            </h6>
         </div>
         <div class="cards-container">
             <!-- Create Card -->
@@ -172,7 +175,7 @@
                     <!--  Body  -->
                     <div class="card-body">
                         <p class="card-text">{{ PM_activity.task_info }}</p>
-                        <p class="card-date">{{ PM_activity.deadline }}</p>
+                        <p class="card-date">{{ PM_activity.project.project_name }} : {{ PM_activity.translator }} : {{ PM_activity.deadline }}</p>
                         <div class="progress Google-Font-Oswald">
                             {% if PM_activity.remaining_text_volume == "Unsatisfactory result" %}
                                 <div class="progress-bar progress-bar-Bad" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
