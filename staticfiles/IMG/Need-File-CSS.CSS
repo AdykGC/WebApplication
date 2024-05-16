@@ -1,0 +1,117 @@
+.Google-Font-Oswald{
+    font-family: "Oswald", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+}
+.material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24
+}
+.P-Size-1{
+    font-size: 1.7rem;
+    margin-bottom: 0rem;
+    margin-left: 0.5rem;
+}
+.P-Size-2{
+    font-size: 1.2rem;
+    margin-bottom: 0rem;
+    margin-left: 0.2rem;
+}
+.P-Size-3{
+    font-size: 1rem;
+    margin-bottom: 0rem;
+}
+.N-1 {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px 5px 10px;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+.Under-Nav-Line-1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+    background-color: black;
+}
+
+.container-login {
+    color: rgb(255, 255, 255);
+    max-width: 400px;
+    margin: 4rem auto; /* Центрирование контейнера по вертикали и горизонтали */
+    padding: 30px;
+    border-radius: 10px;
+    border: 0.3rem solid #959595; /* Установка цвета границы и её толщины */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Мягкая тень */
+    text-align: center; /* Выравнивание текста по центру */
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+.form-group-2 {
+    margin-bottom: 60px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #ffffff; /* Белый цвет текста */
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #495057; /* Темно-серый цвет границы */
+    border-radius: 5px;
+    background-color: #495057; /* Темно-серый цвет фона */
+    color: #ffffff; /* Белый цвет текста */
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #353d45; /* Цвет кнопки */
+    color: #ffffff; /* Белый цвет текста кнопки */
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Цвет кнопки при наведении */
+}
+
+.alert {
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #dc3545; /* Красный цвет фона сообщения об ошибке */
+    color: #ffffff; /* Белый цвет текста сообщения об ошибке */
+    border: 1px solid #dc3545; /* Красный цвет границы */
+}
+
+.LINK-REGISTER {
+    text-decoration: none;
+    color: #ffffff; /* Цвет ссылки */
+}
+
+.LINK-REGISTER:hover {
+    text-decoration: underline;
+}
+
+.SEPARATOR {
+    margin-top: 1rem; /* Верхний отступ элемента */
+    margin-bottom: 1rem; /* Нижний отступ элемента */
+    height: 0; /* Установите высоту разделителя на 0, чтобы он был невидимым */
+    border-top: 0.25rem solid #959595; /* Граница для элемента и цвет границы */
+    width: 100%; /* Установите ширину разделителя на 100% */
+    box-sizing: border-box; /* Учитывайте границу в общей ширине элемента */
+}
+

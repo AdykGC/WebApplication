@@ -54,8 +54,8 @@
                 </p>
                 <div class="collapse" id="collapseExample">
                     <div class="card text-bg-dark mb-3 border-secondary mb-3 card-body">
-                        {% for project in chief_editor_projects %}
-                            <li class="nav-item mb-3" data-project-id="{{ project.activity.translator }}" data-project-name="{{ project.activity.translator }}"
+                        {% for project in chief_editor_activitys %}
+                            <li class="nav-item mb-3" data-project-id="{{ project.translator }}" data-project-name="{{ project.activity.translator }}"
                                 onmouseover="this.style.backgroundColor='#333'"
                                 onmouseout="this.style.backgroundColor='transparent'">
                                 <div class="d-flex justify-content-between align-items-center project-wrapper"
@@ -64,7 +64,7 @@
                                         {{ project.activity.activity_name }}
                                     </div>
                                     <button type="button" class="btn btn-link edit-btn" data-bs-toggle="modal"
-                                        data-bs-target="#editProjectModal{{ project.activity.translator }}">
+                                        data-bs-target="#editProjectModal{{ project.activity.id }}">
                                     </button>
                                 </div>
                             </li>
