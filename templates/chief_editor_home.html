@@ -104,16 +104,16 @@
         </div>
         <div class="cards-container">
             {% for activity in chief_editor_activitys %}
-                {% if activity.remaining_text_volume == "100" %}
+                
                     <button type="button" class="btn card border-dark mb-3" data-bs-toggle="modal" data-bs-target="#activityModal{{ activity.id }}" data-project-id="{{ activity.project.id }}" style="min-width: 22rem; padding: 0;">
                         <!--  Header  -->
                         <div class="card-header bg-dark text-white">
-                            {{ activity.name }}
+                            {{ activity.activity_name }}
                         </div>
                         <!--  Body  -->
                         <div class="card-body">
                             <p class="card-text">{{ activity.task_info }}</p>
-                            <p class="card-date">{{ activity.deadline }}</p>
+                            <p class="card-date">{{ activity.project.project_name }} : {{ activity.translator }} : {{ activity.deadline }}</p>
                             <div class="progress Google-Font-Oswald">
                                 {% if activity.remaining_text_volume == "Unsatisfactory result" %}
                                     <div class="progress-bar progress-bar-Bad" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
@@ -150,13 +150,13 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="activityModalLabel{{ activity.id }}">
-                                        {{ activity.name }}
+                                        {{ activity.activity_name }}
                                     </h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                     <p>{{ activity.task_info }}</p>
-                                    <p>{{ activity.deadline }}</p>
+                                    <p>{{ activity.project.project_name }} : {{ activity.deadline }}</p>
                                     {% if activity.status == "Satisfactory result" %}
                                         <form method="post" action="{% url 'update_activity_2' activity.id %}">
                                             {% csrf_token %}
@@ -206,7 +206,7 @@
                             </div>
                         </div>
                     </div>
-                {% endif %}
+                
             {% endfor %}
             
         </div>
