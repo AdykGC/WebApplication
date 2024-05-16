@@ -124,12 +124,12 @@
                                     {{ activity.remaining_text_volume }}
                                 </div>
                             {% elif activity.remaining_text_volume == "33" %}
-                                <div class="progress-bar progress-bar-33" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                                    33%
+                                <div class="progress-bar progress-bar-33 text-dark" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                    {{ activity.remaining_text_volume }}
                                 </div>
                             {% elif activity.remaining_text_volume == "66" %}
                                 <div class="progress-bar progress-bar-66" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                                    66%
+                                    {{ activity.remaining_text_volume }}
                                 </div>
                             {% elif activity.remaining_text_volume == "100" %}
                                 <div class="progress-bar progress-bar-100" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
