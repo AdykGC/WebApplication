@@ -13,9 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet" />
     <!-- Подключаем файлы JavaScript для некоторых компонентов и интерактивности -->
     <script src="{% static 'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
@@ -27,28 +25,21 @@
     <!-- Фиксированный навигационный бар -->
     <header class="navbar navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <a class="navbar-brand" href="">
-                <!-- LINK -->
-                <img src="{% static 'IMG/Atom_icon.png' %}" id="Logo" alt="Logo" width="95" height="20"
-                    class="d-inline-block" style="margin-bottom: 7px" />
+                <img src="{% static 'IMG/Atom_icon.png' %}" id="Logo" alt="Logo" width="95" height="20" class="d-inline-block" style="margin-bottom: 7px" />
             </a>
         </div>
     </header>
-    <aside class="offcanvas offcanvas-start text-bg-dark" data-bs-scroll="true" tabindex="-1" id="offcanvasDarkNavbar"
-        aria-labelledby="offcanvasDarkNavbarLabel">
+    <aside class="offcanvas offcanvas-start text-bg-dark" data-bs-scroll="true" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
         <!-- Head меню -->
         <div class="offcanvas-header">
             <a class="navbar-brand" href="">
-                <!-- LINK -->
-                <img src="{% static 'IMG/Atom_icon.png' %}" id="Logo" alt="Logo" width="95" height="20"
-                    class="d-inline-block" style="margin-left: 7px" />
+                <img src="{% static 'IMG/Atom_icon.png' %}" id="Logo" alt="Logo" width="95" height="20" class="d-inline-block" style="margin-left: 7px" />
             </a>
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
-                aria-label="Close"></button>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <!-- Main меню -->
         <nav class="offcanvas-body">
@@ -64,19 +55,19 @@
                 <div class="collapse" id="collapseExample">
                     <div class="card text-bg-dark mb-3 border-secondary mb-3 card-body">
                         {% for project in translator_projects %}
-                        <li class="nav-item mb-3" data-project-id="{{ project.id }}"  data-project-name="{{ project.project_name }}"
-                            onmouseover="this.style.backgroundColor='#333'"
-                            onmouseout="this.style.backgroundColor='transparent'">
-                            <div class="d-flex justify-content-between align-items-center project-wrapper"
-                                style="padding: 10px">
-                                <div class="project-name" style="margin-right: 10px; font-family: Roboto">
-                                    {{ project.project_name }}
+                            <li class="nav-item mb-3" data-project-id="{{ project.id }}"  data-project-name="{{ project.project_name }}"
+                                onmouseover="this.style.backgroundColor='#333'"
+                                onmouseout="this.style.backgroundColor='transparent'">
+                                <div class="d-flex justify-content-between align-items-center project-wrapper"
+                                    style="padding: 10px">
+                                    <div class="project-name" style="margin-right: 10px; font-family: Roboto">
+                                        {{ project.project_name }}
+                                    </div>
+                                    <button type="button" class="btn btn-link edit-btn" data-bs-toggle="modal"
+                                        data-bs-target="#editProjectModal{{ project.id }}">
+                                    </button>
                                 </div>
-                                <button type="button" class="btn btn-link edit-btn" data-bs-toggle="modal"
-                                    data-bs-target="#editProjectModal{{ project.id }}">
-                                </button>
-                            </div>
-                        </li>
+                            </li>
                         {% endfor %}
                     </div>
                 </div>
