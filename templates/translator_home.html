@@ -13,9 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet" />
     <!-- Подключаем файлы JavaScript для некоторых компонентов и интерактивности -->
     <script src="{% static 'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
@@ -32,9 +30,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <a class="navbar-brand" href="">
-                <!-- LINK -->
-                <img src="{% static 'IMG/Atom_icon.png' %}" id="Logo" alt="Logo" width="95" height="20"
-                    class="d-inline-block" style="margin-bottom: 7px" />
+                <img src="{% static 'IMG/Atom_icon.png' %}" id="Logo" alt="Logo" width="95" height="20" class="d-inline-block" style="margin-bottom: 7px" />
             </a>
         </div>
     </header>
@@ -43,40 +39,32 @@
         <!-- Head меню -->
         <div class="offcanvas-header">
             <a class="navbar-brand" href="">
-                <!-- LINK -->
-                <img src="{% static 'IMG/Atom_icon.png' %}" id="Logo" alt="Logo" width="95" height="20"
-                    class="d-inline-block" style="margin-left: 7px" />
+                <img src="{% static 'IMG/Atom_icon.png' %}" id="Logo" alt="Logo" width="95" height="20" class="d-inline-block" style="margin-left: 7px" />
             </a>
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
-                aria-label="Close"></button>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <!-- Main меню -->
         <nav class="offcanvas-body">
             <!-- Project List -->
             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                 <p class="d-inline-flex gap-1">
-                    <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"
-                        style="font-family: Roboto">
+                    <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" style="font-family: Roboto">
                         My Projects
                     </button>
                 </p>
                 <div class="collapse" id="collapseExample">
                     <div class="card text-bg-dark mb-3 border-secondary mb-3 card-body">
-                        {% for project in translator_projects %}
-                        <li class="nav-item mb-3" data-project-id="{{ project.id }}"  data-project-name="{{ project.project_name }}"
-                            onmouseover="this.style.backgroundColor='#333'"
-                            onmouseout="this.style.backgroundColor='transparent'">
-                            <div class="d-flex justify-content-between align-items-center project-wrapper"
-                                style="padding: 10px">
-                                <div class="project-name" style="margin-right: 10px; font-family: Roboto">
-                                    {{ project.project_name }}
+                        {% for PM_project in TR_projects %}
+                            <li class="nav-item mb-3" data-project-name="{{ PM_project.project_name }}" data-project-id="{{ PM_project.id }}" data-project-deadline="{{ PM_project.deadline }}" data-project-status="{{ PM_project.status }}"
+                                onmouseover="this.style.backgroundColor='#333'"
+                                onmouseout="this.style.backgroundColor='transparent'">
+                                <div class="d-flex justify-content-between align-items-center project-wrapper" style="padding: 10px">
+                                    <div class="project-name" style="margin-right: 10px; font-family: Roboto">
+                                        {{ PM_project.project_name }}
+                                    </div>
+                                    <button type="button" class="btn btn-link edit-btn" data-bs-toggle="modal" data-bs-target="#editProjectModal{{ PM_project.id }}"></button>
                                 </div>
-                                <button type="button" class="btn btn-link edit-btn" data-bs-toggle="modal"
-                                    data-bs-target="#editProjectModal{{ project.id }}">
-                                </button>
-                            </div>
-                        </li>
+                            </li>
                         {% endfor %}
                     </div>
                 </div>
@@ -200,15 +188,29 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
+            const projectItems = document.querySelectorAll(".nav-item");
+            // Получаем элемент с id selectedProjectName
+            const selectedProjectName = document.getElementById("selectedProjectName");
+            projectItems.forEach(item => {
+                item.addEventListener("click", function () {
+                    // Получаем значение атрибута data-project-id выбранного элемента
+                    const projectId = "ATOM - My projects - " + this.getAttribute("data-project-name");
+                    // Устанавливаем текстовое содержимое элемента с id selectedProjectName в значение project.id
+                    selectedProjectName.textContent = projectId;
+                });
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
             // Select all project items and activity cards
             const projectItems = document.querySelectorAll(".nav-item");
-            const activityCards = document.querySelectorAll(
-                ".cards-container .card"
-            );
+            const activityCards = document.querySelectorAll(".cards-container .card");
             // Attach event listeners to each project item
             projectItems.forEach((item) => {
                 item.addEventListener("click", function (event) {
-                    event.preventDefault(); // Prevent default action (e.g., anchor click)
+                    // Prevent default action (e.g., anchor click)
+                    event.preventDefault();
                     // Retrieve the project ID from the clicked item
                     const projectId = this.getAttribute("data-project-id");
                     // Filter activity cards based on the project ID
@@ -233,21 +235,6 @@
                     // Update the form action to include the activity ID
                     const form = modal.querySelector(`#editActivityForm${activityId}`);
                     form.action = `/update_activity/${activityId}`;
-                });
-            });
-        });
-    </script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const projectItems = document.querySelectorAll(".nav-item");
-            // Получаем элемент с id selectedProjectName
-            const selectedProjectName = document.getElementById("selectedProjectName");
-            projectItems.forEach(item => {
-                item.addEventListener("click", function () {
-                    // Получаем значение атрибута data-project-id выбранного элемента
-                    const projectId = "ATOM - My projects - " + this.getAttribute("data-project-name");
-                    // Устанавливаем текстовое содержимое элемента с id selectedProjectName в значение project.id
-                    selectedProjectName.textContent = projectId;
                 });
             });
         });
