@@ -81,11 +81,11 @@ WSGI_APPLICATION = 'project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': 'kLWcsALepuAWiboLTRnjyXUPsIPIlvHb',
-        'HOST': 'monorail.proxy.rlwy.net',
-        'PORT': '37951',
+        'NAME': 'n8n_7ox7',
+        'USER': 'n8n_user',
+        'PASSWORD': 'B22JWDMyU9vkrKMzf1PTNgj3iOpxwskB',
+        'HOST': 'dpg-cvlc0815pdvs73dbi5mg-a.frankfurt-postgres.render.com',
+        'PORT': '5432',
     }
 }
 

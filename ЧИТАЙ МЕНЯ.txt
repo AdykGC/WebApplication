@@ -1,0 +1,43 @@
+pip install -r requirements.txt
+
+python3 manage.py migrate
+python3 manage.py runserver
+
+
+
+DB_NAME=postgres
+DB_USER=postgres
+DB_PASSWORD=DDRM74df
+DB_HOST=db
+DB_PORT=5432
+
+
+1. Удалить PostgreSQL и все связанные пакеты
+
+brew reinstall postgresql@14
+brew cleanup
+
+Проверка
+brew list | grep postgresql
+which psql
+
+2. Установите PostgreSQL
+brew install postgresql
+
+
+brew services start postgresql@14
+brew services list
+psql postgres
+brew services stop postgresql@14
+brew services restart postgresql
+
+brew uninstall --cask pgadmin4
+brew install --cask pgadmin4
+
+
+nano /usr/local/var/postgres/pg_hba.conf
+
+psql -U postgres
+CREATE ROLE postgres WITH LOGIN SUPERUSER PASSWORD 'DDRM74df';
+ALTER ROLE postgres CREATEDB;
+\q
